@@ -481,6 +481,11 @@ namespace ShipmentDataGrids.Lib
 
 
         #endregion
+
+        private void ShipmentDataGridControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

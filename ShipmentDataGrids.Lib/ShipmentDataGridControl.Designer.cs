@@ -45,10 +45,12 @@
             this.radioMonth = new System.Windows.Forms.RadioButton();
             this.radioWeek = new System.Windows.Forms.RadioButton();
             this.buttonExportExcel = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.buttonRefresh = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panelGrid = new System.Windows.Forms.Panel();
             this.panelFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panelGrid.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelFilter
@@ -65,7 +67,7 @@
             this.panelFilter.Controls.Add(this.radioYear);
             this.panelFilter.Controls.Add(this.radioMonth);
             this.panelFilter.Controls.Add(this.radioWeek);
-            this.panelFilter.Location = new System.Drawing.Point(108, 4);
+            this.panelFilter.Location = new System.Drawing.Point(110, 7);
             this.panelFilter.Margin = new System.Windows.Forms.Padding(2);
             this.panelFilter.Name = "panelFilter";
             this.panelFilter.Size = new System.Drawing.Size(979, 49);
@@ -223,18 +225,29 @@
             // 
             this.buttonExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonExportExcel.Image = global::ShipmentDataGrids.Lib.Properties.Resources.excel_3_32;
-            this.buttonExportExcel.Location = new System.Drawing.Point(62, 9);
+            this.buttonExportExcel.Location = new System.Drawing.Point(64, 12);
             this.buttonExportExcel.Name = "buttonExportExcel";
             this.buttonExportExcel.Size = new System.Drawing.Size(41, 41);
             this.buttonExportExcel.TabIndex = 14;
             this.buttonExportExcel.UseVisualStyleBackColor = true;
             this.buttonExportExcel.Click += new System.EventHandler(this.buttonExportExcel_Click);
             // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Image = global::ShipmentDataGrids.Lib.Properties.Resources.refresh_grey_36x36;
+            this.buttonRefresh.Location = new System.Drawing.Point(4, 12);
+            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(57, 41);
+            this.buttonRefresh.TabIndex = 7;
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -252,7 +265,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(2, 56);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -265,34 +279,35 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1596, 377);
+            this.dataGridView1.Size = new System.Drawing.Size(1600, 369);
             this.dataGridView1.TabIndex = 8;
             // 
-            // buttonRefresh
+            // panelGrid
             // 
-            this.buttonRefresh.Image = global::ShipmentDataGrids.Lib.Properties.Resources.refresh_grey_36x36;
-            this.buttonRefresh.Location = new System.Drawing.Point(2, 9);
-            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(57, 41);
-            this.buttonRefresh.TabIndex = 7;
-            this.buttonRefresh.UseVisualStyleBackColor = true;
-            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            this.panelGrid.AutoSize = true;
+            this.panelGrid.Controls.Add(this.dataGridView1);
+            this.panelGrid.Location = new System.Drawing.Point(0, 61);
+            this.panelGrid.Name = "panelGrid";
+            this.panelGrid.Size = new System.Drawing.Size(1600, 369);
+            this.panelGrid.TabIndex = 15;
             // 
             // ShipmentDataGridControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panelGrid);
             this.Controls.Add(this.buttonExportExcel);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.panelFilter);
             this.Name = "ShipmentDataGridControl";
-            this.Size = new System.Drawing.Size(1600, 433);
+            this.Size = new System.Drawing.Size(1600, 430);
+            this.Load += new System.EventHandler(this.ShipmentDataGridControl_Load);
             this.panelFilter.ResumeLayout(false);
             this.panelFilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panelGrid.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -305,7 +320,6 @@
         private System.Windows.Forms.RadioButton radioMonth;
         private System.Windows.Forms.RadioButton radioWeek;
         private System.Windows.Forms.Button buttonRefresh;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label labelEnd;
         private System.Windows.Forms.Label labelBegin;
         private System.Windows.Forms.DateTimePicker dateTimePickerEndDate;
@@ -314,5 +328,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerEndTime;
         private System.Windows.Forms.RadioButton radioCustom;
         private System.Windows.Forms.Button buttonExportExcel;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panelGrid;
     }
 }

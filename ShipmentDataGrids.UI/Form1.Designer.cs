@@ -35,16 +35,17 @@
             // 
             this.shipmentDataGridControl.AutoSize = true;
             this.shipmentDataGridControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.shipmentDataGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.shipmentDataGridControl.Location = new System.Drawing.Point(0, 0);
             this.shipmentDataGridControl.Name = "shipmentDataGridControl";
-            this.shipmentDataGridControl.Size = new System.Drawing.Size(1600, 435);
+            this.shipmentDataGridControl.Size = new System.Drawing.Size(1599, 522);
             this.shipmentDataGridControl.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1599, 435);
+            this.ClientSize = new System.Drawing.Size(1599, 522);
             this.Controls.Add(this.shipmentDataGridControl);
             this.Name = "Form1";
             this.Text = "Form1";
