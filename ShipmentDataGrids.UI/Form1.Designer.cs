@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._integrationDemoSectionControl1 = new ShipmentDataGrids.Lib.ShipmentDataGridControl();
+            this.shipmentDataGridControl = new ShipmentDataGrids.Lib.ShipmentDataGridControl();
             this.SuspendLayout();
             // 
-            // _integrationDemoSectionControl1
+            // shipmentDataGridControl
             // 
-            this._integrationDemoSectionControl1.AutoSize = true;
-            this._integrationDemoSectionControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this._integrationDemoSectionControl1.Location = new System.Drawing.Point(0, 0);
-            this._integrationDemoSectionControl1.Name = "_integrationDemoSectionControl1";
-            this._integrationDemoSectionControl1.Size = new System.Drawing.Size(1600, 435);
-            this._integrationDemoSectionControl1.TabIndex = 0;
+            this.shipmentDataGridControl.AutoSize = true;
+            this.shipmentDataGridControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.shipmentDataGridControl.Location = new System.Drawing.Point(0, 0);
+            this.shipmentDataGridControl.Name = "shipmentDataGridControl";
+            this.shipmentDataGridControl.Size = new System.Drawing.Size(1600, 435);
+            this.shipmentDataGridControl.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1599, 435);
-            this.Controls.Add(this._integrationDemoSectionControl1);
+            this.Controls.Add(this.shipmentDataGridControl);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -55,7 +55,7 @@
 
         #endregion
 
-        private ShipmentDataGrids.Lib.ShipmentDataGridControl _integrationDemoSectionControl1;
+        private ShipmentDataGrids.Lib.ShipmentDataGridControl shipmentDataGridControl;
     }
 }
 
