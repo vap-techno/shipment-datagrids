@@ -40,6 +40,7 @@ namespace ShipmentDataGrids.Lib
             unit.name as 'Ед.изм.',
             shipment.density as 'Плотность',
             shipment.temperature as 'Температура',
+            shipment.product_name as 'Продукт',
             shipment.tank_name as 'Цистерна',
             final_status.name as 'Статус'
             FROM shipment
@@ -481,6 +482,11 @@ namespace ShipmentDataGrids.Lib
 
 
         #endregion
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 
 }
