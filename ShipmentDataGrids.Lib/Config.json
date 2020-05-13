@@ -1,0 +1,6 @@
+{
+  "DbName": "ShipmentDb",
+  "DbType": "MySql",
+  "UserName": "asn_user",
+  "Password":  "asn_user"
+}
