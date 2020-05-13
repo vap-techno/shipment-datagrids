@@ -54,7 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config.cs" />
+    <Compile Include="Interfaces\IConfig.cs" />
+    <Compile Include="Models\Config.cs" />
+    <Compile Include="Interfaces\IShipment.cs" />
+    <Compile Include="Models\Shipment.cs" />
     <Compile Include="ShipmentDataGridControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,7 +92,7 @@
     <None Include="Resources\excel-3-32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Folder Include="Common\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

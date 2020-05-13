@@ -18,5 +18,15 @@ namespace ShipmentDataGrids.Lib.Interfaces
         /// </summary>
         string DbType { get; set; }
 
+        /// <summary>
+        /// Имя пользователя
+        /// </summary>
+        string UserName { get; set; }
+
+        /// <summary>
+        /// Пароль
+        /// </summary>
+        string Password { get; set; }
+
     }
 }
