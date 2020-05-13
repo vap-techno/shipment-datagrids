@@ -29,12 +29,63 @@ namespace ShipmentDataGrids.Lib.Services
 
         #endregion
 
-
         #region Methods
-        public IEnumerable<IShipment> GetShipments() => _dbConnection.Query<IShipment>(_sqlQuery)
+        public List<IShipment> GetShipments() => _dbConnection.Query<IShipment>(_sqlQuery)
                                                         .ToList();
-        #endregion
 
+        /// <summary>
+        /// Возвращает отгрузки за сутки
+        /// </summary>
+        /// <returns></returns>
+        public List<IShipment> GetShipmentsLastDay()
+        {
+            // TODO: Реализовать
+            return GetShipments();
+        }
+
+        /// <summary>
+        /// Возвращает отгрузки за месяц
+        /// </summary>
+        /// <returns></returns>
+        public List<IShipment> GetShipmentsLastMonth()
+        {
+            // TODO: Реализовать
+            return GetShipments();
+        }
+
+        /// <summary>
+        /// Возвращает отгрузки за неделю
+        /// </summary>
+        /// <returns></returns>
+        public List<IShipment> GetShipmentsLastWeek()
+        {
+            // TODO: Реализовать
+            return GetShipments();
+        }
+
+        /// <summary>
+        /// Возвращает отгрузки за год
+        /// </summary>
+        /// <returns></returns>
+        public List<IShipment> GetShipmentsLastYear()
+        {
+            // TODO: Реализовать
+            return GetShipments();
+        }
+
+        /// <summary>
+        /// Возвращает отгрузки за определенный период
+        /// </summary>
+        /// <param name="begin"> Начало выборки </param>
+        /// <param name="end"> Конец выборки </param>
+        /// <returns></returns>
+        public List<IShipment> GetShipmentsInRange(DateTime begin, DateTime end)
+        {
+            // TODO: Реализовать
+            return GetShipments();
+        }
+
+        #endregion
 
     }
 }
