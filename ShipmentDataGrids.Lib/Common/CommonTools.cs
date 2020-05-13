@@ -13,6 +13,30 @@ namespace ShipmentDataGrids.Lib.Common
 {
     static class CommonTools
     {
+
+        #region Fields
+
+            // Базовая строка запроса
+            const string _sqlAll = @"SELECT  post_name as 'PostName',
+            shipment.time_begin as 'TimeBegin',
+            shipment.time_end as 'TimeEnd',
+            shipment.set_point as 'SetPoint',
+            shipment.result_weight as 'ResultWeight',
+            shipment.result_volume as 'ResultVolume',
+            unit.name as 'Unit',
+            shipment.density as 'Density',
+            shipment.temperature as 'Temperature',
+            shipment.product_name as 'Product',
+            shipment.tank_name as 'TankName',
+            final_status.name as 'FinalStatus'
+            FROM shipment
+            INNER JOIN unit ON shipment.unit_id = unit.id
+            INNER JOIN final_status ON shipment.final_status_id = final_status.id
+            ORDER BY shipment.time_begin DESC";
+
+        #endregion
+
+
         /// <summary>
         /// Возвращает строку подключения
         /// </summary>
@@ -75,6 +99,17 @@ namespace ShipmentDataGrids.Lib.Common
                 }
 
             return cfg;
+        }
+
+
+        /// <summary>
+        /// Строка запроса, возвращающая все записи и поля
+        /// </summary>
+        public static string SqlQueryAll { 
+            get 
+            {
+                return _sqlAll;
+            } 
         }
         
     }
