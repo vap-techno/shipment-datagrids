@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShipmentDataGrids.Lib
+namespace ShipmentDataGrids.Lib.Interfaces
 {
-    class Config
+    interface IShipment
     {
-        public string DbName { get; set; }
     }
 }
