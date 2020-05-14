@@ -106,6 +106,7 @@
     <Compile Include="Models\Config.cs" />
     <Compile Include="Interfaces\IShipment.cs" />
     <Compile Include="Models\Shipment.cs" />
+    <Compile Include="Models\SortableBindingList.cs" />
     <Compile Include="Services\DbService.cs" />
     <Compile Include="ShipmentDataGridControl.cs">
       <SubType>UserControl</SubType>

@@ -48,7 +48,6 @@ namespace ShipmentDataGrids.Lib
             dateTimePickerEndTime.Value = DateTime.Now;
         }
 
-
         #region Methods
 
 
@@ -97,7 +96,9 @@ namespace ShipmentDataGrids.Lib
                     break;
             }
 
-            dataGridView1.DataSource = lst;
+            SortableBindingList<IShipment> srtlst = new SortableBindingList<IShipment>(lst);
+
+            dataGridView1.DataSource = srtlst;
             FormatDataGridView(dataGridView1);
 
         }
@@ -145,6 +146,8 @@ namespace ShipmentDataGrids.Lib
 
             foreach (DataGridViewColumn column in dataGridView.Columns)
             {
+
+                column.SortMode = DataGridViewColumnSortMode.Automatic;
                 column.Resizable = DataGridViewTriState.True;
 
                 // Устанавливаем ширину строк "Время начала" и "Время окончания", чтобы влезло все
@@ -153,6 +156,8 @@ namespace ShipmentDataGrids.Lib
                 {
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 }
+
+
             }
         }
 
