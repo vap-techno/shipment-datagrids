@@ -27,15 +27,7 @@ namespace ShipmentDataGrids.Lib
         // Сервис работы с БД
         DbService _dbService;
 
-        // Время начала в произвольной выборке
-        private DateTime _customDateBegin = new DateTime();
-
-        // Время окончания в произвольной выборке
-        private DateTime _customDateEnd = new DateTime();
-
         private const string ConfigFile = @"ConfigArm.json";
-
-
 
         #endregion
 
@@ -47,21 +39,17 @@ namespace ShipmentDataGrids.Lib
             _dbService = new DbService(config);
             
             dataGridView1.AllowUserToAddRows = false;
-            //ReFillDataGrid(panelFilter.Controls);
             panelFilter.Controls[0].Focus();
             LockDateTimePickers();
 
-            _customDateBegin = DateTime.Now;
-            _customDateEnd = DateTime.Now;
-
-            dateTimePickerBeginDate.Value = _customDateBegin;
-            dateTimePickerBeginTime.Value = _customDateBegin;
-            dateTimePickerEndDate.Value = _customDateBegin;
-            dateTimePickerEndTime.Value = _customDateBegin;
+            dateTimePickerBeginDate.Value = DateTime.Now;
+            dateTimePickerBeginTime.Value = DateTime.Now;
+            dateTimePickerEndDate.Value = DateTime.Now;
+            dateTimePickerEndTime.Value = DateTime.Now;
         }
 
 
-        #region New Methods
+        #region Methods
 
 
         /// <summary>
@@ -98,14 +86,14 @@ namespace ShipmentDataGrids.Lib
 
                     var beginDate = dateTimePickerBeginDate.Value.Date;
                     var beginTime = dateTimePickerBeginTime.Value.TimeOfDay;
-                    _customDateBegin = beginDate + beginTime;
+                    var customDateBegin = beginDate + beginTime;
 
                     var endDate = dateTimePickerEndDate.Value.Date;
                     var endTime = dateTimePickerEndTime.Value.TimeOfDay;
-                    _customDateEnd = endDate + endTime;
+                    var customDateEnd = endDate + endTime;
 
 
-                    lst = _dbService.GetShipmentsInRange(_customDateBegin, _customDateEnd);
+                    lst = _dbService.GetShipmentsInRange(customDateBegin, customDateEnd);
                     break;
             }
 
@@ -151,6 +139,9 @@ namespace ShipmentDataGrids.Lib
             dataGridView.Columns[12].HeaderText = "Цистерна";
             dataGridView.Columns[13].HeaderText = "Статус";
 
+            dataGridView.Columns[0].Visible = false;
+            dataGridView.Columns[1].Visible = false;
+
 
             foreach (DataGridViewColumn column in dataGridView.Columns)
             {
@@ -164,16 +155,6 @@ namespace ShipmentDataGrids.Lib
                 }
             }
         }
-
-
-
-        #endregion
-
-
-        #region Methods
-
-
-
 
         /// <summary>
         /// Блокирует элементы произвольной выборки
