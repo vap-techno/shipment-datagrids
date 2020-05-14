@@ -20,7 +20,10 @@ namespace ShipmentDataGrids.Lib.Common
         #region Fields
 
             // Базовая строка запроса
-            const string _sqlAll = @"SELECT  post_name as 'PostName',
+            const string _sqlAll = @"SELECT  
+            shipment.id as 'Id',
+            timestamp as 'Ts',
+            post_name as 'PostName',
             shipment.time_begin as 'TimeBegin',
             shipment.time_end as 'TimeEnd',
             shipment.set_point as 'SetPoint',
