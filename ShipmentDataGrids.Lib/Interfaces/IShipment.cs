@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShipmentDataGrids.Lib.Interfaces
 {
-    interface IShipment
+    public interface IShipment
     {
         /// <summary>
         /// Идентификатор записи

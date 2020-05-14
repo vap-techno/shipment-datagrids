@@ -8,7 +8,7 @@ using ShipmentDataGrids.Lib.Interfaces;
 
 namespace ShipmentDataGrids.Lib.Models
 {
-    class Shipment: IShipment
+    public class Shipment: IShipment
     {
         
         /// <summary>

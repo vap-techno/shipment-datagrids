@@ -7,7 +7,7 @@ using ShipmentDataGrids.Lib.Interfaces;
 
 namespace ShipmentDataGrids.Lib
 {
-    class Config: IConfig
+    public class Config: IConfig
     {
         /// <summary>
         /// Имя базы данных

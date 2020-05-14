@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShipmentDataGrids.Lib.Interfaces
 {
-    interface IConfig
+    public interface IConfig
     {
         /// <summary>
         /// Имя базы данных
