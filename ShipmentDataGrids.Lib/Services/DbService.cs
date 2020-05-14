@@ -22,8 +22,7 @@ namespace ShipmentDataGrids.Lib.Services
         #region Constructors
         public DbService(IConfig cfg)
         {
-            // TODO: VAP; Создать dbConnection для каждой базы данных
-
+            _dbConnection = CommonTools.GetDbConnection(cfg);
             _sqlQuery = CommonTools.SqlQueryAll;
         }
 
