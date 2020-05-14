@@ -12,6 +12,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using ShipmentDataGrids.Lib.Services;
+using ShipmentDataGrids.Lib.Interfaces;
+using ShipmentDataGrids.Lib.Models;
+using ShipmentDataGrids.Lib.Common;
 
 namespace ShipmentDataGrids.Lib
 {
@@ -19,6 +23,9 @@ namespace ShipmentDataGrids.Lib
     {
 
         #region Fields
+
+        // Сервис работы с БД
+        DbService _dbService;
 
         // Время начала в произвольной выборке
         private DateTime _customDateBegin = new DateTime();
@@ -60,6 +67,11 @@ namespace ShipmentDataGrids.Lib
         {
             InitializeComponent();
 
+            var config = CommonTools.GetConfig(ConfigFile);
+            _dbService = new DbService(config);
+
+            CreateColumnNames(dataGridView1);
+
             dataGridView1.AllowUserToAddRows = false;
             ReFillDataGrid(panelFilter.Controls);
             panelFilter.Controls[0].Focus();
@@ -75,7 +87,86 @@ namespace ShipmentDataGrids.Lib
         }
 
 
+        #region New Methods
+
+
+        /// <summary>
+        /// Создать заголовки таблицы
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        private void CreateColumnNames(DataGridView dataGridView)
+        {
+
+            dataGridView.ColumnCount = 12;
+            dataGridView.Columns[0].Name = "Пост";
+            dataGridView.Columns[1].Name = "Время начала";
+            dataGridView.Columns[2].Name = "Время окончания";
+            dataGridView.Columns[3].Name = "Задание";
+            dataGridView.Columns[4].Name = "Отгружено (масса)";
+            dataGridView.Columns[5].Name = "Отгружено (объем)";
+            dataGridView.Columns[6].Name = "Тип отгрузки";
+            dataGridView.Columns[7].Name = "Плотность";
+            dataGridView.Columns[8].Name = "Температура";
+            dataGridView.Columns[9].Name = "Продукт";
+            dataGridView.Columns[10].Name = "Цистерна";
+            dataGridView.Columns[11].Name = "Статус";
+
+        }
+
+        private void FillDataGrid()
+        {
+
+            var lst = _dbService.GetShipments();
+            dataGridView1.DataSource = lst;
+
+        }
+
+        /// <summary>
+        /// Заполняет DataGrid в зависимости от выбранного radiobutton в коллекции
+        /// </summary>
+        /// <param name="controls"> Список контролов в панели, бросить сюда Panel.Controls </param>
+        private void ReFillDataGrid(ControlCollection controls)
+        {
+            
+            // Определяем отмеченный radiobutton и обновляем dataGrid
+            RadioButton _rb = controls.OfType<RadioButton>().FirstOrDefault(rb => rb.Checked);
+
+            if (_rb == null) return;
+
+            List<IShipment> lst = null;
+            switch (_rb.Name)
+            {
+                case "radioDay":
+                    lst = _dbService.GetShipmentsLastDay();
+                    break;
+                case "radioWeek":
+                    lst = _dbService.GetShipmentsLastWeek();
+                    break;
+                case "radioMonth":
+                    lst = _dbService.GetShipmentsLastMonth();
+                    break;
+                case "radioYear":
+                    lst = _dbService.GetShipmentsLastYear();
+                    break;
+                case "radioAll":
+                    lst = _dbService.GetShipments();
+                    break;
+                case "radioCustom":
+                    lst = _dbService.GetShipmentsInRange(_customDateBegin, _customDateEnd);
+                    break;
+            }
+
+            dataGridView1.DataSource = null;
+        }
+
+
+        #endregion
+
+
         #region Methods
+
+
+
 
         /// <summary>
         /// Возвращает набор данных из БД для DataGrid (синхронный)
@@ -155,39 +246,7 @@ namespace ShipmentDataGrids.Lib
 
         }
 
-        /// <summary>
-        /// Заполняет DataGrid в зависимости от выбранного radiobutton в коллекции
-        /// </summary>
-        /// <param name="controls"> Список контролов в панели, бросить сюда Panel.Controls </param>
-        private void ReFillDataGrid(ControlCollection controls)
-        {
-            // Определяем отмеченный radiobutton и обновляем dataGrid
-            RadioButton _rb = controls.OfType<RadioButton>().FirstOrDefault(rb => rb.Checked);
 
-            if (_rb == null) return;
-            switch (_rb.Name)
-            {
-                case "radioDay":
-                    FillDataGridAsync(SqlDay);
-                    break;
-                case "radioWeek":
-                    FillDataGridAsync(SqlWeek);
-                    break;
-                case "radioMonth":
-                    FillDataGridAsync(SqlMonth);
-                    break;
-                case "radioYear":
-                    FillDataGridAsync(SqlYear);
-                    break;
-                case "radioAll":
-                    FillDataGridAsync(SqlAll);
-                    break;
-                case "radioCustom":
-                    var qeury = GetQuerySqlStringCustom(_customDateBegin, _customDateEnd);
-                    FillDataGridAsync(qeury);
-                    break;
-            }
-        }
 
         /// <summary>
         /// Генерирует строку запроса по произвольному периоду
@@ -551,10 +610,6 @@ namespace ShipmentDataGrids.Lib
 
         #endregion
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 
 }
