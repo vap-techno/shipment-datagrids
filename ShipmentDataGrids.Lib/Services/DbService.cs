@@ -33,8 +33,8 @@ namespace ShipmentDataGrids.Lib.Services
         #region Methods
         public List<IShipment> GetShipments() 
         {
-
-            var lst = _dbConnection.Query<Shipment>(_sqlQuery).ToList();
+            
+            var lst = _dbConnection.QueryAsync<Shipment>(_sqlQuery).Result.ToList();
             return new List<IShipment>(lst.Cast<IShipment>());
         }
 

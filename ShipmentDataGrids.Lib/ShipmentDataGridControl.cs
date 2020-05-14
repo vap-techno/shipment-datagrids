@@ -50,7 +50,6 @@ namespace ShipmentDataGrids.Lib
 
         #region Methods
 
-
         /// <summary>
         /// Заполняет DataGrid в зависимости от выбранного radiobutton в коллекции
         /// </summary>
