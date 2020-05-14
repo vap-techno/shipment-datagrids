@@ -70,7 +70,7 @@ namespace ShipmentDataGrids.Lib
             var config = CommonTools.GetConfig(ConfigFile);
             _dbService = new DbService(config);
 
-            CreateColumnNames(dataGridView1);
+            //CreateColumnNames(dataGridView1);
 
             dataGridView1.AllowUserToAddRows = false;
             ReFillDataGrid(panelFilter.Controls);
@@ -97,7 +97,7 @@ namespace ShipmentDataGrids.Lib
         private void CreateColumnNames(DataGridView dataGridView)
         {
 
-            dataGridView.ColumnCount = 12;
+            //dataGridView.ColumnCount = 12;
             dataGridView.Columns[0].Name = "Пост";
             dataGridView.Columns[1].Name = "Время начала";
             dataGridView.Columns[2].Name = "Время окончания";
@@ -156,7 +156,8 @@ namespace ShipmentDataGrids.Lib
                     break;
             }
 
-            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = lst;
+            
         }
 
 
@@ -544,48 +545,57 @@ namespace ShipmentDataGrids.Lib
             if (radioButton != null && radioButton.Checked)
             {
 
+                // NEW
                 switch (radioButton.Name)
                 {
-                    case "radioDay":
-                        FillDataGrid(SqlDay);
-                        break;
-                    case "radioWeek":
-                        FillDataGrid(SqlWeek);
-                        break;
-                    case "radioMonth":
-                        FillDataGrid(SqlMonth);
-                        break;
-                    case "radioYear":
-                        FillDataGrid(SqlYear);
-
-                        break;
-                    case "radioAll":
-                        FillDataGrid(SqlAll);
-                        break;
-
                     case "radioCustom":
-
                         UnlockDateTimePicker();
-                        var qeury = GetQuerySqlStringCustom(_customDateBegin, _customDateEnd);
-                        FillDataGrid(qeury);
                         break;
 
+                    default:
+                        ReFillDataGrid(panelFilter.Controls);
+                        break;
                 }
+
+                // OLD
+                //switch (radioButton.Name)
+                //{
+                //    case "radioDay":
+                //        FillDataGrid(SqlDay);
+                //        break;
+                //    case "radioWeek":
+                //        FillDataGrid(SqlWeek);
+                //        break;
+                //    case "radioMonth":
+                //        FillDataGrid(SqlMonth);
+                //        break;
+                //    case "radioYear":
+                //        FillDataGrid(SqlYear);
+
+                //        break;
+                //    case "radioAll":
+                //        FillDataGrid(SqlAll);
+                //        break;
+
+                //    case "radioCustom":
+
+                //        UnlockDateTimePicker();
+                //        var qeury = GetQuerySqlStringCustom(_customDateBegin, _customDateEnd);
+                //        FillDataGrid(qeury);
+                //        break;
+
+                //}
             }
         }
 
         private void dateTimePickerBegin_ValueChanged(object sender, EventArgs e)
         {
-            _customDateBegin = dateTimePickerBeginDate.Value.Date + dateTimePickerBeginTime.Value.TimeOfDay;
-            var qeury = GetQuerySqlStringCustom(_customDateBegin, _customDateEnd);
-            FillDataGrid(qeury);
+            ReFillDataGrid(panelFilter.Controls);
         }
 
         private void dateTimePickerEnd_ValueChanged(object sender, EventArgs e)
         {
-            _customDateEnd = dateTimePickerEndDate.Value.Date + dateTimePickerEndTime.Value.TimeOfDay;
-            var qeury = GetQuerySqlStringCustom(_customDateBegin, _customDateEnd);
-            FillDataGrid(qeury);
+            ReFillDataGrid(panelFilter.Controls);
         }
 
         private void buttonExportExcel_Click(object sender, EventArgs e)
