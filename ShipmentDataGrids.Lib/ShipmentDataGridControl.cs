@@ -95,6 +95,16 @@ namespace ShipmentDataGrids.Lib
                     lst = _dbService.GetShipments();
                     break;
                 case "radioCustom":
+
+                    var beginDate = dateTimePickerBeginDate.Value.Date;
+                    var beginTime = dateTimePickerBeginTime.Value.TimeOfDay;
+                    _customDateBegin = beginDate + beginTime;
+
+                    var endDate = dateTimePickerEndDate.Value.Date;
+                    var endTime = dateTimePickerEndTime.Value.TimeOfDay;
+                    _customDateEnd = endDate + endTime;
+
+
                     lst = _dbService.GetShipmentsInRange(_customDateBegin, _customDateEnd);
                     break;
             }
