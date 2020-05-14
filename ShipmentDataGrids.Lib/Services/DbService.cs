@@ -39,8 +39,12 @@ namespace ShipmentDataGrids.Lib.Services
         /// <returns></returns>
         public List<IShipment> GetShipmentsLastDay()
         {
-            // TODO: Реализовать
-            return GetShipments();
+
+            var res = from s in GetShipments()
+                      where s.TimeBegin > DateTime.Now.AddDays(-1)
+                      select s;
+
+            return res.ToList();
         }
 
         /// <summary>
@@ -49,8 +53,11 @@ namespace ShipmentDataGrids.Lib.Services
         /// <returns></returns>
         public List<IShipment> GetShipmentsLastMonth()
         {
-            // TODO: Реализовать
-            return GetShipments();
+            var res = from s in GetShipments()
+                      where s.TimeBegin > DateTime.Now.AddMonths(-1)
+                      select s;
+
+            return res.ToList();
         }
 
         /// <summary>
@@ -59,8 +66,11 @@ namespace ShipmentDataGrids.Lib.Services
         /// <returns></returns>
         public List<IShipment> GetShipmentsLastWeek()
         {
-            // TODO: Реализовать
-            return GetShipments();
+            var res = from s in GetShipments()
+                      where s.TimeBegin > DateTime.Now.AddDays(-7)
+                      select s;
+
+            return res.ToList();
         }
 
         /// <summary>
@@ -69,8 +79,11 @@ namespace ShipmentDataGrids.Lib.Services
         /// <returns></returns>
         public List<IShipment> GetShipmentsLastYear()
         {
-            // TODO: Реализовать
-            return GetShipments();
+            var res = from s in GetShipments()
+                      where s.TimeBegin > DateTime.Now.AddYears(-1)
+                      select s;
+
+            return res.ToList();
         }
 
         /// <summary>
@@ -81,8 +94,11 @@ namespace ShipmentDataGrids.Lib.Services
         /// <returns></returns>
         public List<IShipment> GetShipmentsInRange(DateTime begin, DateTime end)
         {
-            // TODO: Реализовать
-            return GetShipments();
+            var res = from s in GetShipments()
+                      where s.TimeBegin >= begin && s.TimeBegin <= end
+                      select s;
+
+            return res.ToList();
         }
 
         #endregion
