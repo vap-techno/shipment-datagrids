@@ -54,10 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CommonTools.cs" />
     <Compile Include="Interfaces\IConfig.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Interfaces\IShipment.cs" />
     <Compile Include="Models\Shipment.cs" />
+    <Compile Include="Services\DbService.cs" />
     <Compile Include="ShipmentDataGridControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,6 +84,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Resources\refresh_grey_36x36.png" />
   </ItemGroup>
@@ -91,9 +96,7 @@
   <ItemGroup>
     <None Include="Resources\excel-3-32.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
