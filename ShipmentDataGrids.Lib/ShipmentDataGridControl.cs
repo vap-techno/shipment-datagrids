@@ -157,8 +157,29 @@ namespace ShipmentDataGrids.Lib
             }
 
             dataGridView1.DataSource = lst;
-            
+            FormatDataGridView(dataGridView1);
+
+
         }
+
+        private void FormatDataGridView(DataGridView dataGridView)
+        {
+            dataGridView.Columns[0].HeaderText = "ID";
+            dataGridView.Columns[1].HeaderText = "TS";
+            dataGridView.Columns[2].HeaderText = "Пост";
+            dataGridView.Columns[3].HeaderText = "Время начала";
+            dataGridView.Columns[4].HeaderText = "Время окончания";
+            dataGridView.Columns[5].HeaderText = "Задание";
+            dataGridView.Columns[6].HeaderText = "Отгружено (масса)";
+            dataGridView.Columns[7].HeaderText = "Отгружено (объем)";
+            dataGridView.Columns[8].HeaderText = "Тип отгрузки";
+            dataGridView.Columns[9].HeaderText = "Плотность";
+            dataGridView.Columns[10].HeaderText = "Температура";
+            dataGridView.Columns[11].HeaderText = "Продукт";
+            dataGridView.Columns[12].HeaderText = "Цистерна";
+            dataGridView.Columns[13].HeaderText = "Статус";
+        }
+
 
 
         #endregion
