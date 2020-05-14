@@ -102,8 +102,6 @@ namespace ShipmentDataGrids.Lib
             dataGridView1.DataSource = lst;
             FormatDataGridView(dataGridView1);
 
-
-
         }
 
         /// <summary>
@@ -148,9 +146,9 @@ namespace ShipmentDataGrids.Lib
             {
                 column.Resizable = DataGridViewTriState.True;
 
-                // Устанавливаем ширину строк "Дата начала" и "Дата окончания", чтобы влезло все
-                if ((column.Name.IndexOf("Дата начала", StringComparison.Ordinal) >= 0) ||
-                    column.Name.IndexOf("Дата окончания", StringComparison.Ordinal) >= 0)
+                // Устанавливаем ширину строк "Время начала" и "Время окончания", чтобы влезло все
+                if ((column.Name.IndexOf("TimeEnd", StringComparison.Ordinal) >= 0) ||
+                    column.Name.IndexOf("TimeBegin", StringComparison.Ordinal) >= 0)
                 {
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 }
@@ -438,8 +436,6 @@ namespace ShipmentDataGrids.Lib
         {
             ReFillDataGrid(panelFilter.Controls);
         }
-
-
 
         #endregion
 

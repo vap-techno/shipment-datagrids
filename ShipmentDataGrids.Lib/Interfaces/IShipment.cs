@@ -14,14 +14,14 @@ namespace ShipmentDataGrids.Lib.Interfaces
         int Id { get; set; }
 
         /// <summary>
-        /// Номер поста налива
-        /// </summary>
-        string PostName { get; set; }
-
-        /// <summary>
         /// Метка времени
         /// </summary>
         DateTime Ts { get; set; }
+
+        /// <summary>
+        /// Номер поста налива
+        /// </summary>
+        string PostName { get; set; }
 
         /// <summary>
         /// Дата начала налива

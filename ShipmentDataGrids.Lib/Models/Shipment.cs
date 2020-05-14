@@ -17,14 +17,14 @@ namespace ShipmentDataGrids.Lib.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// Номер поста налива
-        /// </summary>
-        public string PostName { get; set; }
-       
-        /// <summary>
         /// Метка времени
         /// </summary>
         public DateTime Ts { get; set; }
+
+        /// <summary>
+        /// Номер поста налива
+        /// </summary>
+        public string PostName { get; set; }
 
         /// <summary>
         /// Дата начала налива
