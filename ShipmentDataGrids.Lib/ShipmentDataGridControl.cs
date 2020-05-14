@@ -33,33 +33,9 @@ namespace ShipmentDataGrids.Lib
         // Время окончания в произвольной выборке
         private DateTime _customDateEnd = new DateTime();
 
-        private string _connectionString =
-            @"Data Source=.\SQLEXPRESS;Initial Catalog=ShipmentDB;Integrated Security=True";
-
         private const string ConfigFile = @"ConfigArm.json";
 
-        private const string SqlAll = @"SELECT  post_name as 'Пост',
-            shipment.time_begin as 'Дата начала',
-            shipment.time_end as 'Дата окончания',
-            shipment.set_point as 'Задание',
-            shipment.result_weight as 'Отгружено, кг',
-            shipment.result_volume as 'Отгружено, л',
-            unit.name as 'Ед.изм.',
-            shipment.density as 'Плотность',
-            shipment.temperature as 'Температура',
-            shipment.product_name as 'Продукт',
-            shipment.tank_name as 'Цистерна',
-            final_status.name as 'Статус'
-            FROM shipment
-            INNER JOIN unit ON shipment.unit_id = unit.id
-            INNER JOIN final_status ON shipment.final_status_id = final_status.id";
 
-        private const string SqlSort = "\n ORDER BY shipment.time_begin DESC";
-
-        private const string SqlDay = SqlAll + "\n WHERE shipment.timestamp > DATEADD(day,-1,GETDATE())" + SqlSort;
-        private const string SqlWeek = SqlAll + "\n WHERE shipment.timestamp > DATEADD(WEEK,-1,GETDATE())" + SqlSort;
-        private const string SqlMonth = SqlAll + "\n WHERE shipment.timestamp > DATEADD(month,-1,GETDATE())" + SqlSort;
-        private const string SqlYear = SqlAll + "\n WHERE shipment.timestamp > DATEADD(year,-1,GETDATE())" + SqlSort;
 
         #endregion
 
@@ -69,11 +45,9 @@ namespace ShipmentDataGrids.Lib
 
             var config = CommonTools.GetConfig(ConfigFile);
             _dbService = new DbService(config);
-
-            //CreateColumnNames(dataGridView1);
-
+            
             dataGridView1.AllowUserToAddRows = false;
-            ReFillDataGrid(panelFilter.Controls);
+            //ReFillDataGrid(panelFilter.Controls);
             panelFilter.Controls[0].Focus();
             LockDateTimePickers();
 
@@ -89,37 +63,6 @@ namespace ShipmentDataGrids.Lib
 
         #region New Methods
 
-
-        /// <summary>
-        /// Создать заголовки таблицы
-        /// </summary>
-        /// <param name="dataGridView"></param>
-        private void CreateColumnNames(DataGridView dataGridView)
-        {
-
-            //dataGridView.ColumnCount = 12;
-            dataGridView.Columns[0].Name = "Пост";
-            dataGridView.Columns[1].Name = "Время начала";
-            dataGridView.Columns[2].Name = "Время окончания";
-            dataGridView.Columns[3].Name = "Задание";
-            dataGridView.Columns[4].Name = "Отгружено (масса)";
-            dataGridView.Columns[5].Name = "Отгружено (объем)";
-            dataGridView.Columns[6].Name = "Тип отгрузки";
-            dataGridView.Columns[7].Name = "Плотность";
-            dataGridView.Columns[8].Name = "Температура";
-            dataGridView.Columns[9].Name = "Продукт";
-            dataGridView.Columns[10].Name = "Цистерна";
-            dataGridView.Columns[11].Name = "Статус";
-
-        }
-
-        private void FillDataGrid()
-        {
-
-            var lst = _dbService.GetShipments();
-            dataGridView1.DataSource = lst;
-
-        }
 
         /// <summary>
         /// Заполняет DataGrid в зависимости от выбранного radiobutton в коллекции
@@ -160,8 +103,13 @@ namespace ShipmentDataGrids.Lib
             FormatDataGridView(dataGridView1);
 
 
+
         }
 
+        /// <summary>
+        /// Отформатировать вывод таблицы
+        /// </summary>
+        /// <param name="dataGridView"></param>
         private void FormatDataGridView(DataGridView dataGridView)
         {
 
@@ -194,6 +142,19 @@ namespace ShipmentDataGrids.Lib
             dataGridView.Columns[11].HeaderText = "Продукт";
             dataGridView.Columns[12].HeaderText = "Цистерна";
             dataGridView.Columns[13].HeaderText = "Статус";
+
+
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                column.Resizable = DataGridViewTriState.True;
+
+                // Устанавливаем ширину строк "Дата начала" и "Дата окончания", чтобы влезло все
+                if ((column.Name.IndexOf("Дата начала", StringComparison.Ordinal) >= 0) ||
+                    column.Name.IndexOf("Дата окончания", StringComparison.Ordinal) >= 0)
+                {
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+            }
         }
 
 
@@ -205,104 +166,6 @@ namespace ShipmentDataGrids.Lib
 
 
 
-
-        /// <summary>
-        /// Возвращает набор данных из БД для DataGrid (синхронный)
-        /// </summary>
-        /// <param name="conString">Строка подлкючения к БД</param>
-        /// <param name="query"> SQL-запрос </param>
-        /// <returns></returns>
-        private DataSet GetDataSet(string conString, string query)
-        {
-            using (var connection = new SqlConnection(conString))
-            using (var adapter = new SqlDataAdapter(query, connection))
-            {
-                DataSet dataSet = new DataSet();
-                adapter.Fill(dataSet);
-                return dataSet;
-            }
-        }
-
-        /// <summary>
-        /// Отправляет запрос в SQL и заполняет dataGrid
-        /// </summary>
-        /// <param name="query">SQL - запрос</param>
-        private void FillDataGrid(string query)
-        {
-
-            // Читаем из файла конфигурации имя базы данных
-            try
-            {
-                using (StreamReader file = File.OpenText(ConfigFile))
-                {
-                    JsonSerializer serializer = new JsonSerializer();
-                    var obj = (Config)serializer.Deserialize(file, typeof(Config));
-                    if (string.IsNullOrEmpty(obj.DbName)) return;
-                    _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=" + obj.DbName +
-                                        ";Integrated Security=True";
-                }
-            }
-            catch (Exception)
-            {
-
-                return;
-            }
-
-
-            try
-            {
-                // Делаем запрос в БД и формируем ответ на DataGrid
-                var ds = GetDataSet(_connectionString, query);
-                dataGridView1.DataSource = ds.Tables[0];
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Не могу сделать запрос \n{e.Message}");
-                return;
-            }
-
-
-            // Оформление таблицы
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
-            {
-                column.Resizable = DataGridViewTriState.True;
-
-                // Блокируем поля сортировок, которые уходят Exception
-                //if (column.Name.IndexOf("Отгружено", StringComparison.Ordinal) >= 0)
-                //{
-                //    column.SortMode = DataGridViewColumnSortMode.NotSortable;
-                //}
-
-                // Устанавливаем ширину строк "Дата начала" и "Дата окончания", чтобы влезло все
-                if ((column.Name.IndexOf("Дата начала", StringComparison.Ordinal) >= 0) ||
-                    column.Name.IndexOf("Дата окончания", StringComparison.Ordinal) >= 0)
-                {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
-            }
-
-
-        }
-
-
-
-        /// <summary>
-        /// Генерирует строку запроса по произвольному периоду
-        /// </summary>
-        /// <param name="beginDateTime"> Начало </param>
-        /// <param name="endDateTime"> Конец </param>
-        /// <returns></returns>
-        private string GetQuerySqlStringCustom(DateTime beginDateTime, DateTime endDateTime)
-        {
-
-            return SqlAll +
-                   " \n WHERE shipment.timestamp BETWEEN CAST('" +
-                   String.Format(new CultureInfo("en-US"), "{0}", beginDateTime) +
-                   "' as datetime) AND CAST('" +
-                   String.Format(new CultureInfo("en-US"), "{0}", endDateTime) +
-                   "' as datetime) " + SqlSort;
-
-        }
 
         /// <summary>
         /// Блокирует элементы произвольной выборки
@@ -480,83 +343,6 @@ namespace ShipmentDataGrids.Lib
 
 
         #endregion
-
-
-
-        #region AsyncMethods
-
-        /// <summary>
-        /// Возвращает набор данных из БД для DataGrid (асинхронный)
-        /// </summary>
-        /// <param name="conString"> Строка подлкючения к БД </param>
-        /// <param name="query"> SQL-запрос </param>
-        /// <returns></returns>
-        private Task<DataSet> GetDataSetAsync(string conString, string query)
-        {
-            return Task.Run(() => GetDataSet(conString, query));
-        }
-
-        /// <summary>
-        /// Отправляет запрос в SQL и заполняет dataGrid с помощью асинхронного запроса
-        /// </summary>
-        /// <param name="query">SQL - запрос</param>
-        /// <returns></returns>
-        private async void FillDataGridAsync(string query)
-        {
-            // Читаем из файла конфигурации имя базы данных
-            try
-            {
-                using (StreamReader file = File.OpenText(ConfigFile))
-                {
-                    JsonSerializer serializer = new JsonSerializer();
-                    var obj = (Config)serializer.Deserialize(file, typeof(Config));
-                    if (string.IsNullOrEmpty(obj.DbName)) return;
-                    _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=" + obj.DbName +
-                                        ";Integrated Security=True";
-                }
-            }
-            catch (Exception)
-            {
-
-                return;
-            }
-
-
-            try
-            {
-                // Делаем запрос в БД и формируем ответ на DataGrid
-                var ds = await GetDataSetAsync(_connectionString, query);
-                dataGridView1.DataSource = ds.Tables[0];
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Не могу сделать запрос \n{e.Message}");
-                return;
-            }
-
-
-            // Оформление таблицы
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
-            {
-                column.Resizable = DataGridViewTriState.True;
-
-                //Блокируем поля сортировок, которые уходят Exception
-                if (column.Name.IndexOf("Отгружено", StringComparison.Ordinal) >= 0)
-                {
-                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
-                }
-
-                // Устанавливаем ширину строк "Дата начала" и "Дата окончания", чтобы влезло все
-                if ((column.Name.IndexOf("Дата начала", StringComparison.Ordinal) >= 0) ||
-                    column.Name.IndexOf("Дата окончания", StringComparison.Ordinal) >= 0)
-                {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
-            }
-        }
-
-        #endregion
-
 
         #region Event Handlers
 
