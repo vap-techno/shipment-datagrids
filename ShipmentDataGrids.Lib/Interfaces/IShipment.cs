@@ -51,7 +51,7 @@ namespace ShipmentDataGrids.Lib.Interfaces
         /// <summary>
         /// Ед. измерения (тип измерения)
         /// </summary>
-        int Unit { get; set; }
+        string Unit { get; set; }
 
         /// <summary>
         /// Плотность продукта
@@ -76,7 +76,7 @@ namespace ShipmentDataGrids.Lib.Interfaces
         /// <summary>
         /// Статус налива
         /// </summary>
-        int FinalStatus { get; set; }
+        string FinalStatus { get; set; }
 
     }
 }
