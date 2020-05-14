@@ -164,6 +164,22 @@ namespace ShipmentDataGrids.Lib
 
         private void FormatDataGridView(DataGridView dataGridView)
         {
+
+            dataGridView1.Columns[0].DataPropertyName = "Id";
+            dataGridView1.Columns[1].DataPropertyName = "Ts";
+            dataGridView1.Columns[2].DataPropertyName = "PostName";
+            dataGridView1.Columns[3].DataPropertyName = "TimeBegin";
+            dataGridView1.Columns[4].DataPropertyName = "TimeEnd";
+            dataGridView1.Columns[5].DataPropertyName = "SetPoint";
+            dataGridView1.Columns[6].DataPropertyName = "ResultWeight";
+            dataGridView1.Columns[7].DataPropertyName = "ResultVolume";
+            dataGridView1.Columns[8].DataPropertyName = "Unit";
+            dataGridView1.Columns[9].DataPropertyName = "Density";
+            dataGridView1.Columns[10].DataPropertyName = "Temperature";
+            dataGridView1.Columns[11].DataPropertyName = "ProductName";
+            dataGridView1.Columns[12].DataPropertyName = "TankName";
+            dataGridView1.Columns[13].DataPropertyName = "FinalStatus";
+
             dataGridView.Columns[0].HeaderText = "ID";
             dataGridView.Columns[1].HeaderText = "TS";
             dataGridView.Columns[2].HeaderText = "Пост";
