@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using ShipmentDataGrids.Lib.Interfaces;
 
@@ -84,6 +87,44 @@ namespace ShipmentDataGrids.Lib.Common
         }
 
         /// <summary>
+        /// Возвращает экземляр соединения с БД IDbConnection
+        /// </summary>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public static IDbConnection GetDbConnection(IConfig config)
+        {
+
+            IDbConnection dbConnection = null;
+
+            switch (config.DbType)
+            {
+                case "SqlExpress":
+
+                    dbConnection = new SqlConnection(GetConnectionString(config));
+
+                    break;
+
+                case "MySql":
+
+                    dbConnection = new MySqlConnection(GetConnectionString(config));
+                    break;
+
+                case "PostgreSql":
+                    // TODO: VAP; Доделать
+                    break;
+
+                case "Sqlite":
+                    // TODO: VAP; Доделать
+                    break;
+                default:
+                    break;
+            }
+
+            return dbConnection;
+        }
+
+
+        /// <summary>
         /// Считывает конфигурацию из файла
         /// </summary>
         /// <param name="filename"> JSON файл с конфигурацией </param>
@@ -112,5 +153,7 @@ namespace ShipmentDataGrids.Lib.Common
             } 
         }
         
+
+
     }
 }
