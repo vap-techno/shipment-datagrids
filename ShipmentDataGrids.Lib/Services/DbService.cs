@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using ShipmentDataGrids.Lib.Common;
 using ShipmentDataGrids.Lib.Interfaces;
+using ShipmentDataGrids.Lib.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace ShipmentDataGrids.Lib.Services
 {
@@ -29,8 +31,12 @@ namespace ShipmentDataGrids.Lib.Services
         #endregion
 
         #region Methods
-        public List<IShipment> GetShipments() => _dbConnection.Query<IShipment>(_sqlQuery)
-                                                        .ToList();
+        public List<IShipment> GetShipments() 
+        {
+
+            var lst = _dbConnection.Query<Shipment>(_sqlQuery).ToList();
+            return new List<IShipment>(lst.Cast<IShipment>());
+        }
 
         /// <summary>
         /// Возвращает отгрузки за сутки
