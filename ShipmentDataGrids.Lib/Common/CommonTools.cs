@@ -136,7 +136,7 @@ namespace ShipmentDataGrids.Lib.Common
                 using (StreamReader file = File.OpenText(filename))
                 {
                     JsonSerializer serializer = new JsonSerializer();
-                    cfg = (IConfig)serializer.Deserialize(file, typeof(IConfig));
+                    cfg = (Config)serializer.Deserialize(file, typeof(Config));
                 }
 
             return cfg;
