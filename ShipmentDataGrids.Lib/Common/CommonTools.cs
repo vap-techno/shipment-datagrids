@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
-using MySql.Data.MySqlClient;
+using System.Data.Odbc;
 using Newtonsoft.Json;
 using ShipmentDataGrids.Lib.Interfaces;
 
@@ -70,7 +70,7 @@ namespace ShipmentDataGrids.Lib.Common
 
                 case "MySql":
 
-                    conString = $"Server = localhost; Database = {config.DbName}; Uid = {config.UserName}; Pwd = {config.Password};";
+                    conString = "DRIVER={MySQL ODBC 8.0 Unicode Driver};SERVER=localhost;DATABASE=ShipmentDb;UID=asn_user;PASSWORD=asn_user;OPTION=3";
                     break;
 
                 case "PostgreSql":
@@ -108,8 +108,7 @@ namespace ShipmentDataGrids.Lib.Common
                     break;
 
                 case "MySql":
-
-                    dbConnection = new MySqlConnection(GetConnectionString(config));
+                    dbConnection = new OdbcConnection(GetConnectionString(config));
                     break;
 
                 case "PostgreSql":

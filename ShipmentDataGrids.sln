@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30105.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentDataGrids.Lib", "ShipmentDataGrids.Lib\ShipmentDataGrids.Lib.csproj", "{18CAEBAB-1F7D-461A-B1DD-7989572DA3D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentDataGrids.UI", "ShipmentDataGrids.UI\ShipmentDataGrids.UI.csproj", "{D3B1883A-69C7-4BF7-8530-2CE84AC648C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentDataGrids.Tests", "ShipmentDataGrids.Tests\ShipmentDataGrids.Tests.csproj", "{244531EE-2899-4762-BD39-1210E37D85FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{D3B1883A-69C7-4BF7-8530-2CE84AC648C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3B1883A-69C7-4BF7-8530-2CE84AC648C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3B1883A-69C7-4BF7-8530-2CE84AC648C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244531EE-2899-4762-BD39-1210E37D85FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244531EE-2899-4762-BD39-1210E37D85FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244531EE-2899-4762-BD39-1210E37D85FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244531EE-2899-4762-BD39-1210E37D85FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2ED3C69A-A7F1-4324-92DF-444D8BDC6D8B}
 	EndGlobalSection
 EndGlobal
