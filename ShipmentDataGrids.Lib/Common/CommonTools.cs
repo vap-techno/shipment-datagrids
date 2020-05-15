@@ -14,7 +14,7 @@ using ShipmentDataGrids.Lib.Interfaces;
 
 namespace ShipmentDataGrids.Lib.Common
 {
-    static class CommonTools
+    public static class CommonTools
     {
 
         #region Fields
