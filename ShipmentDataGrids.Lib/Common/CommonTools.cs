@@ -70,7 +70,7 @@ namespace ShipmentDataGrids.Lib.Common
 
                 case "mysql":
 
-                    conString = "DRIVER={MySQL ODBC 8.0 Unicode Driver};SERVER=localhost;DATABASE=ShipmentDb;UID=asn_user;PASSWORD=asn_user;OPTION=3";
+                    conString = $"DRIVER={{MySQL ODBC 8.0 Unicode Driver}};SERVER=localhost;DATABASE={config.DbName};UID={config.UserName};PASSWORD={config.Password};OPTION=3";
                     break;
 
                 case "postgresql":
