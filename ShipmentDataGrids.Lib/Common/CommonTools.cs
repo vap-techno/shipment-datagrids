@@ -98,23 +98,23 @@ namespace ShipmentDataGrids.Lib.Common
 
             IDbConnection dbConnection = null;
 
-            switch (config.DbType)
+            switch (config.DbType.ToLower())
             {
-                case "SqlExpress":
+                case "sqlexpress":
 
                     dbConnection = new SqlConnection(GetConnectionString(config));
 
                     break;
 
-                case "MySql":
+                case "mysql":
                     dbConnection = new OdbcConnection(GetConnectionString(config));
                     break;
 
-                case "PostgreSql":
+                case "postgresql":
                     // TODO: VAP; Доделать
                     break;
 
-                case "Sqlite":
+                case "sqlite":
                     dbConnection = new OdbcConnection(GetConnectionString(config));
                     break;
                 default:
