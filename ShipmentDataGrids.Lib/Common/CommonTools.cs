@@ -53,9 +53,9 @@ namespace ShipmentDataGrids.Lib.Common
 
             string conString = null;
 
-            switch (config.DbType)
+            switch (config.DbType.ToLower())
             {
-                case "SqlExpress":
+                case "sqlexpress":
                     
                     if (config.UserName == null)
                     {
@@ -68,17 +68,17 @@ namespace ShipmentDataGrids.Lib.Common
 
                     break;
 
-                case "MySql":
+                case "mysql":
 
                     conString = "DRIVER={MySQL ODBC 8.0 Unicode Driver};SERVER=localhost;DATABASE=ShipmentDb;UID=asn_user;PASSWORD=asn_user;OPTION=3";
                     break;
 
-                case "PostgreSql":
+                case "postgresql":
                     // TODO: VAP; Вставить строку
                     conString = null;
                     break;
 
-                case "Sqlite":
+                case "sqlite":
                     conString = $"DRIVER={{SQLite3 ODBC Driver}};Database={config.DbName}";
                     break;
             default:
