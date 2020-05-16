@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace ShipmentDataGrids.Lib.Services
 {
-    class DbService
+    public class DbService
     {
         #region Fields
         private readonly IDbConnection _dbConnection;
