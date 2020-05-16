@@ -79,8 +79,7 @@ namespace ShipmentDataGrids.Lib.Common
                     break;
 
                 case "Sqlite":
-                    // TODO: VAP; Вставить строку
-                    conString = null;
+                    conString = $"DRIVER={{SQLite3 ODBC Driver}};Database={config.DbName}";
                     break;
             default:
                     break;
@@ -116,7 +115,7 @@ namespace ShipmentDataGrids.Lib.Common
                     break;
 
                 case "Sqlite":
-                    // TODO: VAP; Доделать
+                    dbConnection = new OdbcConnection(GetConnectionString(config));
                     break;
                 default:
                     break;
