@@ -267,7 +267,6 @@ namespace ShipmentDataGrids.Lib
 
         }
 
-
         /// <summary>
         /// Экспорт таблицы в CSV
         /// </summary>

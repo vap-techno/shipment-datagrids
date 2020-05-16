@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShipmentDataGridControl));
             this.panelFilter = new System.Windows.Forms.Panel();
             this.radioCustom = new System.Windows.Forms.RadioButton();
             this.dateTimePickerEndTime = new System.Windows.Forms.DateTimePicker();
@@ -44,11 +45,11 @@
             this.radioYear = new System.Windows.Forms.RadioButton();
             this.radioMonth = new System.Windows.Forms.RadioButton();
             this.radioWeek = new System.Windows.Forms.RadioButton();
-            this.buttonExportExcel = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buttonRefresh = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelToolBar = new System.Windows.Forms.Panel();
+            this.buttonExport = new System.Windows.Forms.Button();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             this.panelFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -223,17 +224,6 @@
             this.radioWeek.UseVisualStyleBackColor = true;
             this.radioWeek.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
             // 
-            // buttonExportExcel
-            // 
-            this.buttonExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonExportExcel.Image = global::ShipmentDataGrids.Lib.Properties.Resources.excel_3_32;
-            this.buttonExportExcel.Location = new System.Drawing.Point(60, 9);
-            this.buttonExportExcel.Name = "buttonExportExcel";
-            this.buttonExportExcel.Size = new System.Drawing.Size(41, 41);
-            this.buttonExportExcel.TabIndex = 14;
-            this.buttonExportExcel.UseVisualStyleBackColor = true;
-            this.buttonExportExcel.Click += new System.EventHandler(this.buttonExportExcel_Click);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -272,18 +262,6 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1596, 314);
             this.dataGridView1.TabIndex = 8;
-            
-            // 
-            // buttonRefresh
-            // 
-            this.buttonRefresh.Image = global::ShipmentDataGrids.Lib.Properties.Resources.refresh_grey_36x36;
-            this.buttonRefresh.Location = new System.Drawing.Point(0, 9);
-            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(57, 41);
-            this.buttonRefresh.TabIndex = 7;
-            this.buttonRefresh.UseVisualStyleBackColor = true;
-            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -302,13 +280,35 @@
             // 
             // panelToolBar
             // 
-            this.panelToolBar.Controls.Add(this.buttonExportExcel);
+            this.panelToolBar.Controls.Add(this.buttonExport);
             this.panelToolBar.Controls.Add(this.buttonRefresh);
             this.panelToolBar.Controls.Add(this.panelFilter);
             this.panelToolBar.Location = new System.Drawing.Point(3, 3);
             this.panelToolBar.Name = "panelToolBar";
             this.panelToolBar.Size = new System.Drawing.Size(1089, 59);
             this.panelToolBar.TabIndex = 16;
+            // 
+            // buttonExport
+            // 
+            this.buttonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonExport.Image = ((System.Drawing.Image)(resources.GetObject("buttonExport.Image")));
+            this.buttonExport.Location = new System.Drawing.Point(60, 9);
+            this.buttonExport.Name = "buttonExport";
+            this.buttonExport.Size = new System.Drawing.Size(41, 41);
+            this.buttonExport.TabIndex = 14;
+            this.buttonExport.UseVisualStyleBackColor = true;
+            this.buttonExport.Click += new System.EventHandler(this.buttonExportExcel_Click);
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Image = global::ShipmentDataGrids.Lib.Properties.Resources.refresh_grey_36x36;
+            this.buttonRefresh.Location = new System.Drawing.Point(0, 9);
+            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(57, 41);
+            this.buttonRefresh.TabIndex = 7;
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // ShipmentDataGridControl
             // 
@@ -343,7 +343,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerBeginTime;
         private System.Windows.Forms.DateTimePicker dateTimePickerEndTime;
         private System.Windows.Forms.RadioButton radioCustom;
-        private System.Windows.Forms.Button buttonExportExcel;
+        private System.Windows.Forms.Button buttonExport;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panelToolBar;
     }

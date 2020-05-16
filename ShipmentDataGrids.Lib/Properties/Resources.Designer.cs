@@ -73,9 +73,9 @@ namespace ShipmentDataGrids.Lib.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap excel_icon {
+        internal static System.Drawing.Bitmap File_CSV_icon {
             get {
-                object obj = ResourceManager.GetObject("excel_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("File_CSV_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
