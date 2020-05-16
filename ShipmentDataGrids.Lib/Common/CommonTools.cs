@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
 using System.Data.Odbc;
 using Newtonsoft.Json;
 using ShipmentDataGrids.Lib.Interfaces;
@@ -23,7 +22,7 @@ namespace ShipmentDataGrids.Lib.Common
             const string _sqlAll = @"SELECT  
             shipment.id as 'Id',
             timestamp as 'Ts',
-            post_name as 'PostName',
+            post_name as 'PostName',git
             shipment.time_begin as 'TimeBegin',
             shipment.time_end as 'TimeEnd',
             shipment.set_point as 'SetPoint',
