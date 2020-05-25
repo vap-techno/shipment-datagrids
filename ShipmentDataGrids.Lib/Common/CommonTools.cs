@@ -19,25 +19,26 @@ namespace ShipmentDataGrids.Lib.Common
         #region Fields
 
             // Базовая строка запроса
-            const string _sqlAll = @"SELECT  
-            shipment.id as 'Id',
-            timestamp as 'Ts',
-            post_name as 'PostName',
-            shipment.time_begin as 'TimeBegin',
-            shipment.time_end as 'TimeEnd',
-            shipment.set_point as 'SetPoint',
-            shipment.result_main as 'ResultMain',
-            shipment.result_secondary as 'ResultSecondary',
-            unit.name as 'UnitSecondary',
-            shipment.density as 'Density',
-            shipment.temperature as 'Temperature',
-            shipment.product_name as 'Product',
-            shipment.tank_name as 'TankName',
-            final_status.name as 'FinalStatus'
-            FROM shipment
-            INNER JOIN unit ON shipment.unit_id = unit.id
-            INNER JOIN final_status ON shipment.final_status_id = final_status.id
-            ORDER BY shipment.time_begin DESC";
+            const string _sqlAll = @"SELECT shipment.id as 'Id',
+		        timestamp as 'Ts',
+		        post_name as 'PostName',
+		        shipment.time_begin as 'TimeBegin',
+		        shipment.time_end as 'TimeEnd',
+		        shipment.set_point as 'SetPoint',
+		        shipment.result_main as 'ResultMain',
+		        u1.name as 'UnitMain',
+		        shipment.result_secondary as 'ResultSecondary',
+		        u2.name as 'UnitSecondary',
+		        shipment.density as 'Density',
+		        shipment.temperature as 'Temperature',
+		        shipment.product_name as 'Product',
+		        shipment.tank_name as 'TankName',
+		        final_status.name as 'FinalStatus'
+		        FROM shipment
+		        LEFT JOIN final_status ON shipment.final_status_id = final_status.id
+		        LEFT JOIN unit u1 ON shipment.unit_main_id = u1.id
+		        LEFT JOIN unit u2 ON shipment.unit_secondary_id = u2.id
+		        ORDER BY shipment.time_begin DESC;";
 
         #endregion
 
