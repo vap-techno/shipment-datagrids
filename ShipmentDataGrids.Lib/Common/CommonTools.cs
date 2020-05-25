@@ -22,13 +22,13 @@ namespace ShipmentDataGrids.Lib.Common
             const string _sqlAll = @"SELECT  
             shipment.id as 'Id',
             timestamp as 'Ts',
-            post_name as 'PostName',git
+            post_name as 'PostName',
             shipment.time_begin as 'TimeBegin',
             shipment.time_end as 'TimeEnd',
             shipment.set_point as 'SetPoint',
-            shipment.result_weight as 'ResultWeight',
-            shipment.result_volume as 'ResultVolume',
-            unit.name as 'Unit',
+            shipment.result_main as 'ResultMain',
+            shipment.result_secondary as 'ResultSecondary',
+            unit.name as 'UnitSecondary',
             shipment.density as 'Density',
             shipment.temperature as 'Temperature',
             shipment.product_name as 'Product',
