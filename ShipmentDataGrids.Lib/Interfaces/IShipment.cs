@@ -47,20 +47,26 @@ namespace ShipmentDataGrids.Lib.Interfaces
         /// <summary>
         /// Отгруженное значение по массе
         /// </summary>
-        [System.ComponentModel.DisplayName("Отгружено (масса)")]
-        double ResultWeight { get; set; }
+        [System.ComponentModel.DisplayName("Отгружено")]
+        double ResultMain { get; set; }
+
+        /// <summary>
+        /// Ед. измерения (тип измерения) для основного поля
+        /// </summary>
+        [System.ComponentModel.DisplayName("Ед. изм.")]
+        string UnitMain { get; set; }
 
         /// <summary>
         /// Отгруженное значение по объему
         /// </summary>
-        [System.ComponentModel.DisplayName("Отгружено (объем)")]
+        [System.ComponentModel.DisplayName("Отгружено, доп.")]
         double ResultVolume { get; set; }
 
         /// <summary>
         /// Ед. измерения (тип измерения)
         /// </summary>
-        [System.ComponentModel.DisplayName("Тип отгрузки")]
-        string Unit { get; set; }
+        [System.ComponentModel.DisplayName("Ед. изм.")]
+        string UnitAdditional { get; set; }
 
         /// <summary>
         /// Плотность продукта

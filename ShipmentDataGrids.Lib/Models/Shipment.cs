@@ -44,7 +44,12 @@ namespace ShipmentDataGrids.Lib.Models
         /// <summary>
         /// Отгруженное значение по массе
         /// </summary>
-        public double ResultWeight { get; set; }
+        public double ResultMain { get; set; }
+
+        /// <summary>
+        /// Ед. измерения (тип измерения) для основного поля
+        /// </summary>
+        public string UnitMain { get; set; }
 
         /// <summary>
         /// Отгруженное значение по объему
@@ -52,9 +57,9 @@ namespace ShipmentDataGrids.Lib.Models
         public double ResultVolume { get; set; }
 
         /// <summary>
-        /// Ед. измерения (тип измерения)
+        /// Ед. измерения (тип измерения) для доп. поля
         /// </summary>
-        public string Unit { get; set; }
+        public string UnitAdditional { get; set; }
 
         /// <summary>
         /// Плотность продукта
