@@ -45,7 +45,7 @@ namespace ShipmentDataGrids.Lib.Interfaces
         double SetPoint { get; set; }
 
         /// <summary>
-        /// Отгруженное значение по массе
+        /// Отгруженное значение основное
         /// </summary>
         [System.ComponentModel.DisplayName("Отгружено")]
         double ResultMain { get; set; }
@@ -57,10 +57,10 @@ namespace ShipmentDataGrids.Lib.Interfaces
         string UnitMain { get; set; }
 
         /// <summary>
-        /// Отгруженное значение по объему
+        /// Отгруженное значение - дополнительное
         /// </summary>
         [System.ComponentModel.DisplayName("Отгружено, доп.")]
-        double ResultVolume { get; set; }
+        double ResultAdditional { get; set; }
 
         /// <summary>
         /// Ед. измерения (тип измерения)

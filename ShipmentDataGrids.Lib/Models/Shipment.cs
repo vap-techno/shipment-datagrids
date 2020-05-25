@@ -54,7 +54,7 @@ namespace ShipmentDataGrids.Lib.Models
         /// <summary>
         /// Отгруженное значение по объему
         /// </summary>
-        public double ResultVolume { get; set; }
+        public double ResultAdditional { get; set; }
 
         /// <summary>
         /// Ед. измерения (тип измерения) для доп. поля
