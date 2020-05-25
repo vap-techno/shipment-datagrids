@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Reflection;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
@@ -35,9 +36,20 @@ namespace ShipmentDataGrids.Lib
         {
             InitializeComponent();
 
-            var config = CommonTools.GetConfig(ConfigFile);
-            _dbService = new DbService(config);
-            
+            var executablePath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var cfgPath = Path.Combine(executablePath, ConfigFile);
+
+            var config = CommonTools.GetConfig(cfgPath);
+
+            if (config != null)
+            {
+                _dbService = new DbService(config);
+            }
+            else
+            {
+                MessageBox.Show($"Не удалось загрузить файл: ${cfgPath}");
+            }
+           
             dataGridView1.AllowUserToAddRows = false;
             panelFilter.Controls[0].Focus();
             LockDateTimePickers();
