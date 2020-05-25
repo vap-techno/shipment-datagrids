@@ -115,14 +115,15 @@ namespace ShipmentDataGrids.Lib
             dataGridView1.Columns[3].DataPropertyName = "TimeBegin";
             dataGridView1.Columns[4].DataPropertyName = "TimeEnd";
             dataGridView1.Columns[5].DataPropertyName = "SetPoint";
-            dataGridView1.Columns[6].DataPropertyName = "ResultWeight";
-            dataGridView1.Columns[7].DataPropertyName = "ResultVolume";
-            dataGridView1.Columns[8].DataPropertyName = "Unit";
-            dataGridView1.Columns[9].DataPropertyName = "Density";
-            dataGridView1.Columns[10].DataPropertyName = "Temperature";
-            dataGridView1.Columns[11].DataPropertyName = "ProductName";
-            dataGridView1.Columns[12].DataPropertyName = "TankName";
-            dataGridView1.Columns[13].DataPropertyName = "FinalStatus";
+            dataGridView1.Columns[6].DataPropertyName = "ResultMain";
+            dataGridView1.Columns[7].DataPropertyName = "UnitMain";
+            dataGridView1.Columns[8].DataPropertyName = "ResultSecondary";
+            dataGridView1.Columns[9].DataPropertyName = "UnitSecondary";
+            dataGridView1.Columns[10].DataPropertyName = "Density";
+            dataGridView1.Columns[11].DataPropertyName = "Temperature";
+            dataGridView1.Columns[12].DataPropertyName = "ProductName";
+            dataGridView1.Columns[13].DataPropertyName = "TankName";
+            dataGridView1.Columns[14].DataPropertyName = "FinalStatus";
 
             dataGridView.Columns[0].Visible = false;
             dataGridView.Columns[1].Visible = false;
