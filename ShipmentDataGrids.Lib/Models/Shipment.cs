@@ -54,12 +54,12 @@ namespace ShipmentDataGrids.Lib.Models
         /// <summary>
         /// Отгруженное значение по объему
         /// </summary>
-        public double ResultAdditional { get; set; }
+        public double ResultSecondary { get; set; }
 
         /// <summary>
         /// Ед. измерения (тип измерения) для доп. поля
         /// </summary>
-        public string UnitAdditional { get; set; }
+        public string UnitSecondary { get; set; }
 
         /// <summary>
         /// Плотность продукта

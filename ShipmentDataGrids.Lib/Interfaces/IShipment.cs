@@ -60,13 +60,13 @@ namespace ShipmentDataGrids.Lib.Interfaces
         /// Отгруженное значение - дополнительное
         /// </summary>
         [System.ComponentModel.DisplayName("Отгружено, доп.")]
-        double ResultAdditional { get; set; }
+        double ResultSecondary { get; set; }
 
         /// <summary>
         /// Ед. измерения (тип измерения)
         /// </summary>
         [System.ComponentModel.DisplayName("Ед. изм.")]
-        string UnitAdditional { get; set; }
+        string UnitSecondary { get; set; }
 
         /// <summary>
         /// Плотность продукта
