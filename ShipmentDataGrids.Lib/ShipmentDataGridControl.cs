@@ -36,28 +36,71 @@ namespace ShipmentDataGrids.Lib
         {
             InitializeComponent();
 
-            var executablePath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var cfgPath = Path.Combine(executablePath, ConfigFile);
+            string cfgPath = null;
+            var dir1 = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var dir2 = @"C:\Project\Config\";
 
-            var config = CommonTools.GetConfig(cfgPath);
+            var path1 = Path.Combine(dir1, ConfigFile);
+            var path2 = Path.Combine(dir2, ConfigFile);
 
-            if (config != null)
+
+            // Обертка в try-catch позволяет отловить ошибки, когда с библиотекой в Tia Portal
+            try
             {
-                _dbService = new DbService(config);
-            }
-            else
-            {
-                MessageBox.Show($"Не удалось загрузить файл: ${cfgPath}");
-            }
-           
-            dataGridView1.AllowUserToAddRows = false;
-            panelFilter.Controls[0].Focus();
-            LockDateTimePickers();
+                if (File.Exists(ConfigFile))
+                {
+                    cfgPath = ConfigFile;
+                }
+                else if (File.Exists(path1))
+                {
+                    cfgPath = path1;
+                }
+                else if (File.Exists(path2))
+                {
+                    cfgPath = path2;
+                }
 
-            dateTimePickerBeginDate.Value = DateTime.Now;
-            dateTimePickerBeginTime.Value = DateTime.Now;
-            dateTimePickerEndDate.Value = DateTime.Now;
-            dateTimePickerEndTime.Value = DateTime.Now;
+                var config = CommonTools.GetConfig(cfgPath);
+
+                if (config != null)
+                {
+                    try
+                    {
+                        _dbService = new DbService(config);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show($"Не удалось загрузить файл: ${cfgPath}");
+                }
+
+                dataGridView1.AllowUserToAddRows = false;
+                panelFilter.Controls[0].Focus();
+                LockDateTimePickers();
+
+                dateTimePickerBeginDate.Value = DateTime.Now;
+                dateTimePickerBeginTime.Value = DateTime.Now;
+                dateTimePickerEndDate.Value = DateTime.Now;
+                dateTimePickerEndTime.Value = DateTime.Now;
+            }
+            catch (AggregateException ex)
+            {
+
+                string msg = "";
+                foreach (var errInner in ex.InnerExceptions)
+                {
+                    msg += errInner + "\n";
+                }
+                MessageBox.Show(msg);
+            }
+
+
         }
 
         #region Methods
