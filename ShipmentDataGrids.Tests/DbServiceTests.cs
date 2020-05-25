@@ -23,9 +23,6 @@ namespace ShipmentDataGrids.Tests
         {
 
             // Arrange
-            //string sqlQueryIns = "INSERT INTO shipment(post_name, timestamp, time_begin, time_end, set_point, result_weight, result_volume, unit_id, temperature, density, product_name, tank_name, final_status_id) " +
-            //    "VALUES(@PostName, NOW(), @TimeBegin, @TimeEnd, @SetPoint, @ResultWeight, @ResultVolume, @Unit, @Temperature, @Density, @ProductName, @TankName, @FinalSatus)";
-
             var cfg = new Config()
             {
                 DbName = "ShipmentDb",
@@ -61,8 +58,8 @@ namespace ShipmentDataGrids.Tests
                 s.TimeBegin = s.Ts.AddMinutes(-10);
                 s.TimeEnd = s.Ts;
                 s.SetPoint = 1000 + 0.1 * i;
-                s.ResultWeight = s.SetPoint + (new Random()).NextDouble();
-                s.ResultVolume = s.SetPoint + (new Random()).NextDouble();
+                s.ResultMain = s.SetPoint + (new Random()).NextDouble();
+                s.ResultSecondary = s.SetPoint + (new Random()).NextDouble();
 
             }
 
