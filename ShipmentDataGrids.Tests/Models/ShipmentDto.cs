@@ -26,25 +26,45 @@ namespace ShipmentDataGrids.Tests.Models
             PostName = shipment.PostName;
             TimeBegin = shipment.TimeBegin;
             SetPoint = shipment.SetPoint;
-            ResultWeight = shipment.ResultWeight;
-            ResultVolume = shipment.ResultVolume;
+            ResultMain = shipment.ResultMain;
+            ResultSecondary = shipment.ResultSecondary;
 
-            switch (shipment.Unit)
+            switch (shipment.UnitMain)
             {
                 case "кг":
-                    Unit = 0;
+                    UnitMain = 0;
                     break;
 
                 case "л":
-                    Unit = 1;
+                    UnitMain = 1;
                     break;
 
                 case "см":
-                    Unit = 2;
+                    UnitMain = 2;
                     break;
 
                 default:
-                    Unit = 0;
+                    UnitMain = 0;
+                    break;
+
+            }
+
+            switch (shipment.UnitSecondary)
+            {
+                case "кг":
+                    UnitSecondary = 0;
+                    break;
+
+                case "л":
+                    UnitSecondary = 1;
+                    break;
+
+                case "см":
+                    UnitSecondary = 2;
+                    break;
+
+                default:
+                    UnitSecondary = 0;
                     break;
 
             }
@@ -76,9 +96,11 @@ namespace ShipmentDataGrids.Tests.Models
         public DateTime TimeBegin { get; set; }
         public DateTime TimeEnd { get; set; }
         public double SetPoint { get; set; }
-        public double ResultWeight { get; set; }
-        public double ResultVolume { get; set; }
-        public int Unit { get; set; }
+        public double ResultMain { get; set; }
+        public double ResultSecondary { get; set; }
+        public int UnitMain { get; set; }
+
+        public int UnitSecondary { get; set; }
         public double Density { get; set; }
         public double Temperature { get; set; }
         public string ProductName { get; set; }

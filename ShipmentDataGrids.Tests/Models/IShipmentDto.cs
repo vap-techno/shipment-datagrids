@@ -32,17 +32,22 @@ namespace ShipmentDataGrids.Tests.Models
         /// <summary>
         /// Отгруженное значение по массе
         /// </summary>
-        double ResultWeight { get; set; }
+        double ResultMain { get; set; }
 
         /// <summary>
         /// Отгруженное значение по объему
         /// </summary>
-        double ResultVolume { get; set; }
+        double ResultSecondary { get; set; }
 
         /// <summary>
         /// Ед. измерения (тип измерения)
         /// </summary>
-        int Unit { get; set; }
+        int UnitMain { get; set; }
+
+        /// <summary>
+        /// Ед. измерения (тип измерения)
+        /// </summary>
+        int UnitSecondary { get; set; }
 
         /// <summary>
         /// Плотность продукта
