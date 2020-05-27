@@ -63,7 +63,7 @@ namespace ShipmentDataGrids.Lib.Common
                     } 
                     else
                     {
-                        conString = $"Provider=SQLOLEDB.1;Persist Security Info=False;User ID={config.UserName}; Password={config.Password};Initial Catalog={config.DbName};Data Source=.\\SQLEXPRESS";
+                        conString = $"Data Source=.\\SQLEXPRESS;Persist Security Info=False;User ID={config.UserName}; Password={config.Password};Initial Catalog={config.DbName}";
                     }
 
                     break;

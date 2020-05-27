@@ -1,6 +1,6 @@
 {
   "DbName": "ShipmentDb",
-  "DbType": "mysql",
+  "DbType": "sqlexpress",
   "UserName": "asn_user",
-  "Password":  "asn_user"
+  "Password": "asn_user"
 }
