@@ -11,6 +11,6 @@ namespace ShipmentDataGrids.Lib.Models
     class ConfigDto
     {
         [JsonProperty(PropertyName = "Shipment", Required = Required.Default)]
-        public IConfig Config { get; set; }
+        public Config Config { get; set; }
     }
 }
