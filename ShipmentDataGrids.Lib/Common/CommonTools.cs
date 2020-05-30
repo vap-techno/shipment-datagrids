@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.Odbc;
 using Newtonsoft.Json;
 using ShipmentDataGrids.Lib.Interfaces;
+using ShipmentDataGrids.Lib.Models;
 
 namespace ShipmentDataGrids.Lib.Common
 {
@@ -133,11 +134,13 @@ namespace ShipmentDataGrids.Lib.Common
         public static IConfig GetConfig(string filename)
         {
             IConfig cfg = null;
+            
 
                 using (StreamReader file = File.OpenText(filename))
                 {
                     JsonSerializer serializer = new JsonSerializer();
-                    cfg = (Config)serializer.Deserialize(file, typeof(Config));
+                    var cfgDto = (ConfigDto)serializer.Deserialize(file, typeof(ConfigDto));
+                    if (cfgDto != null) cfg = cfgDto.Config;
                 }
 
             return cfg;
