@@ -1,6 +1,30 @@
 {
-  "DbName": "ShipmentDb",
-  "DbType": "sqlexpress",
-  "UserName": "asn_user",
-  "Password": "asn_user"
+  "Shipment": {
+    "DbName": "ShipmentDb",
+    "DbType": "sqlexpress",
+    "UserName": "asn_user",
+    "Password": "asn_user"
+  },
+
+  "TankNumber": {
+    "DbName": "AsnDb",
+    "DbType": "sqlexpress",
+    "UserName": "asn_user",
+    "Password": "asn_user",
+
+    "PostList": [
+      "项耱 1",
+      "项耱 2",
+      "项耱 3",
+      "项耱 4",
+      "项耱 5",
+      "项耱 6",
+      "项耱 7"
+    ],
+    "OpcPath": "opcda://PROG01/OPC.SimaticHMI.CoRtHmiRTm.1",
+    "OpcExchangeTag": {
+      "CmdStr": "Task_External_cmdStr"
+    }
+  }
+
 }
