@@ -32,7 +32,7 @@ namespace ShipmentDataGrids.Lib.Common
 		        u2.name as 'UnitSecondary',
 		        shipment.density as 'Density',
 		        shipment.temperature as 'Temperature',
-		        shipment.product_name as 'Product',
+		        shipment.product_name as 'ProductName',
 		        shipment.tank_name as 'TankName',
 		        final_status.name as 'FinalStatus'
 		        FROM shipment
