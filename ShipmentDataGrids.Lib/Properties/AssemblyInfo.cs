@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ShipmentDataGrids.Lib")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Library for view oil shipment info")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP Inc.")]
+[assembly: AssemblyCompany("Anatoly Veshtemov")]
 [assembly: AssemblyProduct("ShipmentDataGrids.Lib")]
-[assembly: AssemblyCopyright("Copyright © HP Inc. 2018")]
+[assembly: AssemblyCopyright("Copyright © Anatoly Veshtemov")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
