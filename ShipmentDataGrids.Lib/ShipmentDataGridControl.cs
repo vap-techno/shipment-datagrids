@@ -280,7 +280,10 @@ namespace ShipmentDataGrids.Lib
                             string[] outputCsv = new string[dataGridView1.Rows.Count + 1];
                             for (int i = 0; i < columnCount; i++)
                             {
-                                columnNames += dataGridView1.Columns[i].HeaderText.ToString() + ";";
+                                if (dataGridView1.Columns[i].Visible) {
+                                    columnNames += dataGridView1.Columns[i].HeaderText.ToString() + ";";
+                                }
+                                
                             }
                             outputCsv[0] += columnNames;
 
@@ -288,7 +291,10 @@ namespace ShipmentDataGrids.Lib
                             {
                                 for (int j = 0; j < columnCount; j++)
                                 {
-                                    outputCsv[i] += dataGridView1.Rows[i - 1].Cells[j].Value.ToString() + ";";
+                                    if (dataGridView1.Columns[j].Visible)
+                                    {
+                                        outputCsv[i] += dataGridView1.Rows[i - 1].Cells[j].Value.ToString() + ";";
+                                    }
                                 }
                             }
 
