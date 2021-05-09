@@ -27,6 +27,7 @@ namespace ShipmentDataGrids.Lib
 
         // Сервис работы с БД
         DbService _dbService;
+        Columns _columns;
 
         private const string ConfigFile = @"ConfigArm.json";
 
@@ -67,6 +68,7 @@ namespace ShipmentDataGrids.Lib
                     try
                     {
                         _dbService = new DbService(config);
+                        _columns = config.Columns;
                     }
                     catch (Exception ex)
                     {
@@ -180,9 +182,21 @@ namespace ShipmentDataGrids.Lib
             dataGridView1.Columns[13].DataPropertyName = "TankName";
             dataGridView1.Columns[14].DataPropertyName = "FinalStatus";
 
-            dataGridView.Columns[0].Visible = false;
-            dataGridView.Columns[1].Visible = false;
-
+            dataGridView.Columns[0].Visible = _columns.Id;
+            dataGridView.Columns[1].Visible = _columns.Ts;
+            dataGridView.Columns[2].Visible = _columns.PostName;
+            dataGridView.Columns[3].Visible = _columns.TimeBegin;
+            dataGridView.Columns[4].Visible = _columns.TimeEnd;
+            dataGridView.Columns[5].Visible = _columns.SetPoint;
+            dataGridView.Columns[6].Visible = _columns.ResultMain;
+            dataGridView.Columns[7].Visible = _columns.UnitMain;
+            dataGridView.Columns[8].Visible = _columns.ResultSecondary;
+            dataGridView.Columns[9].Visible = _columns.UnitSecondary;
+            dataGridView.Columns[10].Visible = _columns.Density;
+            dataGridView.Columns[11].Visible = _columns.Temperature;
+            dataGridView.Columns[12].Visible = _columns.ProductName;
+            dataGridView.Columns[13].Visible = _columns.TankName;
+            dataGridView.Columns[14].Visible = _columns.FinalStatus;
 
             foreach (DataGridViewColumn column in dataGridView.Columns)
             {

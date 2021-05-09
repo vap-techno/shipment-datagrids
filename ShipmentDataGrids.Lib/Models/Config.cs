@@ -28,5 +28,33 @@ namespace ShipmentDataGrids.Lib
         /// Пароль
         /// </summary>
         public string Password { get; set; }
+
+        /// <summary>
+        /// Указвает, какие колонки следует отобразить в таблице
+        /// </summary>
+        public Columns Columns { get; set; }
+
+    }
+
+    /// <summary>
+    /// Указывает какие колонки отобразить в таблице
+    /// </summary>
+    public struct Columns
+    {
+        public bool Id;
+        public bool Ts;
+        public bool PostName;
+        public bool TimeBegin;
+        public bool TimeEnd;
+        public bool SetPoint;
+        public bool ResultMain;
+        public bool UnitMain;
+        public bool ResultSecondary;
+        public bool UnitSecondary;
+        public bool Density;
+        public bool Temperature;
+        public bool ProductName;
+        public bool TankName;
+        public bool FinalStatus;
     }
 }

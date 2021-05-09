@@ -28,5 +28,10 @@ namespace ShipmentDataGrids.Lib.Interfaces
         /// </summary>
         string Password { get; set; }
 
+        /// <summary>
+        /// Указвает, какие колонки следует отобразить в таблице
+        /// </summary>
+        Columns Columns { get; set; }
+
     }
 }

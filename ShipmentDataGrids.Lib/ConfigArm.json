@@ -3,8 +3,28 @@
     "DbName": "ShipmentDb",
     "DbType": "sqlexpress",
     "UserName": "asn_user",
-    "Password": "asn_user"
+    "Password": "asn_user",
+
+    "Columns": {
+      "Id": false,
+      "Ts": false,
+      "PostName": true,
+      "TimeBegin": true,
+      "TimeEnd": true,
+      "SetPoint": false,
+      "ResultMain": false,
+      "UnitMain": false,
+      "ResultSecondary": false,
+      "UnitSecondary": false,
+      "Density": false,
+      "Temperature": false,
+      "ProductName": true,
+      "TankName": true,
+      "FinalStatus": true
+    }
   },
+
+
 
   "TankNumber": {
     "DbName": "AsnDb",
