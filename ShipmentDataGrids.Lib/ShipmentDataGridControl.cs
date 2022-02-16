@@ -366,34 +366,6 @@ namespace ShipmentDataGrids.Lib
                         break;
                 }
 
-                // OLD
-                //switch (radioButton.Name)
-                //{
-                //    case "radioDay":
-                //        FillDataGrid(SqlDay);
-                //        break;
-                //    case "radioWeek":
-                //        FillDataGrid(SqlWeek);
-                //        break;
-                //    case "radioMonth":
-                //        FillDataGrid(SqlMonth);
-                //        break;
-                //    case "radioYear":
-                //        FillDataGrid(SqlYear);
-
-                //        break;
-                //    case "radioAll":
-                //        FillDataGrid(SqlAll);
-                //        break;
-
-                //    case "radioCustom":
-
-                //        UnlockDateTimePicker();
-                //        var qeury = GetQuerySqlStringCustom(_customDateBegin, _customDateEnd);
-                //        FillDataGrid(qeury);
-                //        break;
-
-                //}
             }
         }
 
@@ -409,7 +381,6 @@ namespace ShipmentDataGrids.Lib
 
         private void buttonExportExcel_Click(object sender, EventArgs e)
         {
-            //ExportToExcel();
             ExportToCsv();
         }
 
