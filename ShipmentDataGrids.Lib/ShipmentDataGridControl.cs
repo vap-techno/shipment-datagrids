@@ -166,40 +166,53 @@ namespace ShipmentDataGrids.Lib
         private void FormatDataGridView(DataGridView dataGridView)
         {
 
-            dataGridView1.Columns[0].DataPropertyName = "Id";
-            dataGridView1.Columns[1].DataPropertyName = "Ts";
-            dataGridView1.Columns[2].DataPropertyName = "PostName";
-            dataGridView1.Columns[3].DataPropertyName = "TimeBegin";
-            dataGridView1.Columns[4].DataPropertyName = "TimeEnd";
-            dataGridView1.Columns[5].DataPropertyName = "SetPoint";
-            dataGridView1.Columns[6].DataPropertyName = "ResultMain";
-            dataGridView1.Columns[7].DataPropertyName = "UnitMain";
-            dataGridView1.Columns[8].DataPropertyName = "ResultSecondary";
-            dataGridView1.Columns[9].DataPropertyName = "UnitSecondary";
-            dataGridView1.Columns[10].DataPropertyName = "Density";
-            dataGridView1.Columns[11].DataPropertyName = "Temperature";
-            dataGridView1.Columns[12].DataPropertyName = "ProductName";
-            dataGridView1.Columns[13].DataPropertyName = "TankName";
-            dataGridView1.Columns[14].DataPropertyName = "FinalStatus";
-
-            dataGridView.Columns[0].Visible = _columns.Id;
-            dataGridView.Columns[1].Visible = _columns.Ts;
-            dataGridView.Columns[2].Visible = _columns.PostName;
-            dataGridView.Columns[3].Visible = _columns.TimeBegin;
-            dataGridView.Columns[4].Visible = _columns.TimeEnd;
-            dataGridView.Columns[5].Visible = _columns.SetPoint;
-            dataGridView.Columns[6].Visible = _columns.ResultMain;
-            dataGridView.Columns[7].Visible = _columns.UnitMain;
-            dataGridView.Columns[8].Visible = _columns.ResultSecondary;
-            dataGridView.Columns[9].Visible = _columns.UnitSecondary;
-            dataGridView.Columns[10].Visible = _columns.Density;
-            dataGridView.Columns[11].Visible = _columns.Temperature;
-            dataGridView.Columns[12].Visible = _columns.ProductName;
-            dataGridView.Columns[13].Visible = _columns.TankName;
-            dataGridView.Columns[14].Visible = _columns.FinalStatus;
-
             foreach (DataGridViewColumn column in dataGridView.Columns)
             {
+
+                if (column.Name != null && column.Name.IndexOf("Id", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.Id;
+
+                if (column.Name != null && column.Name.IndexOf("Ts", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.Ts;
+
+                if (column.Name != null && column.Name.IndexOf("PostName", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.PostName;
+
+                if (column.Name != null && column.Name.IndexOf("ProductName", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.ProductName;
+
+                if (column.Name != null && column.Name.IndexOf("TankName", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.TankName;
+
+                if (column.Name != null && column.Name.IndexOf("TimeBegin", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.TimeBegin;
+
+                if (column.Name != null && column.Name.IndexOf("TimeEnd", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.TimeEnd;
+
+                if (column.Name != null && column.Name.IndexOf("SetPoint", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.SetPoint;
+
+                if (column.Name != null && column.Name.IndexOf("ResultMain", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.ResultMain;
+
+                if (column.Name != null && column.Name.IndexOf("UnitMain", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.UnitMain;
+
+                if (column.Name != null && column.Name.IndexOf("ResultSecondary", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.ResultSecondary;
+
+                if (column.Name != null && column.Name.IndexOf("UnitSecondary", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.UnitSecondary;
+
+                if (column.Name != null && column.Name.IndexOf("Density", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.Density;
+
+                if (column.Name != null && column.Name.IndexOf("Temperature", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.Temperature;
+
+                if (column.Name != null && column.Name.IndexOf("FinalStatus", StringComparison.Ordinal) >= 0)
+                    column.Visible = _columns.FinalStatus;
 
                 column.SortMode = DataGridViewColumnSortMode.Automatic;
                 column.Resizable = DataGridViewTriState.True;
