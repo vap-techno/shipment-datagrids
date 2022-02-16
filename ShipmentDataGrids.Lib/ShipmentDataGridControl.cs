@@ -39,9 +39,9 @@ namespace ShipmentDataGrids.Lib
 
             string cfgPath = null;
             var dir1 = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var dir2 = @"C:\Project\Config\";
+            const string dir2 = @"C:\Project\Config\";
 
-            var path1 = Path.Combine(dir1, ConfigFile);
+            var path1 = Path.Combine(dir1 ?? string.Empty, ConfigFile);
             var path2 = Path.Combine(dir2, ConfigFile);
 
 
@@ -218,8 +218,8 @@ namespace ShipmentDataGrids.Lib
                 column.Resizable = DataGridViewTriState.True;
 
                 // Устанавливаем ширину строк "Время начала" и "Время окончания", чтобы влезло все
-                if ((column.Name.IndexOf("TimeEnd", StringComparison.Ordinal) >= 0) ||
-                    column.Name.IndexOf("TimeBegin", StringComparison.Ordinal) >= 0)
+                if (column.Name != null && ((column.Name.IndexOf("TimeEnd", StringComparison.Ordinal) >= 0) ||
+                                            column.Name.IndexOf("TimeBegin", StringComparison.Ordinal) >= 0))
                 {
                     column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 }
@@ -266,7 +266,7 @@ namespace ShipmentDataGrids.Lib
                 {
                     Filter = "CSV (*.csv)|*.csv",
                     FilterIndex = 2,
-                    FileName = $"Shipment_{DateTime.Now.ToString("yyyy-MM-dd_HH_mm_ss")}"
+                    FileName = $"Shipment_{DateTime.Now:yyyy-MM-dd_HH_mm_ss}"
                 };
                 
                 bool fileError = false;
@@ -350,11 +350,9 @@ namespace ShipmentDataGrids.Lib
         private void radioButtons_CheckedChanged(object sender, EventArgs e)
         {
             LockDateTimePickers();
-            var radioButton = sender as RadioButton;
-            if (radioButton != null && radioButton.Checked)
+            if (sender is RadioButton radioButton && radioButton.Checked)
             {
 
-                // NEW
                 switch (radioButton.Name)
                 {
                     case "radioCustom":
