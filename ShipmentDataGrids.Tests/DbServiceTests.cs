@@ -18,6 +18,9 @@ namespace ShipmentDataGrids.Tests
     [TestFixture]
     public class DbServiceTests
     {
+        /// <summary>
+        /// Проверяем подключение к MySQL
+        /// </summary>
         [Test]
         public void Mysql_reading()
         {
@@ -35,36 +38,35 @@ namespace ShipmentDataGrids.Tests
             var dbService = new DbService(cfg);
             var lst = dbService.GetShipments();
 
-            // Drop values
+            // Assert
+            Assert.That(lst.Count > 0, Is.True);
+        }
 
+        /// <summary>
+        /// Проверяем подключение к MSSQL
+        /// </summary>
+        [Test]
+        public void Mssql_reading()
+        {
+
+            // Arrange
+            var cfg = new Config()
+            {
+                Server = "\\.SQLEXPRESS",
+                DbName = "ShipmentDb",
+                DbType = "mssql",
+                UserName = "asn_user",
+                Password = "asn_user"
+            };
+
+            // Act
+            var dbService = new DbService(cfg);
+            var lst = dbService.GetShipments();
 
             // Assert
-            Assert.IsTrue(lst.Count > 0);
+            Assert.That(lst.Count > 0, Is.True);
         }
 
-
-
-        private List<IShipment> GenerateTestEntities(int qnt = 100)
-        {
-            List<IShipment> lst = new List<IShipment>();
-
-            for (int i = 0; i < qnt; i++)
-            {
-                IShipment s = new Shipment();
-
-                s.Id = i;
-                s.Ts = DateTime.Now.AddHours(-i);
-                s.PostName = "Пост 1";
-                s.TimeBegin = s.Ts.AddMinutes(-10);
-                s.TimeEnd = s.Ts;
-                s.SetPoint = 1000 + 0.1 * i;
-                s.ResultMain = s.SetPoint + (new Random()).NextDouble();
-                s.ResultSecondary = s.SetPoint + (new Random()).NextDouble();
-
-            }
-
-            return lst;
-        }
     }
 }
 

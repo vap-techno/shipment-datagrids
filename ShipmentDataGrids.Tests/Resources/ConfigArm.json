@@ -1,0 +1,28 @@
+{
+  "Shipment": {
+    "Server": "ARM\\SQLEXPRESS",
+    "DbName": "ShipmentDb",
+    "DbType": "sqlexpress",
+    "UserName": "asn_user",
+    "Password": "asn_user",
+
+    "Columns": {
+      "Id": false,
+      "Ts": false,
+      "PostName": true,
+      "TimeBegin": true,
+      "TimeEnd": true,
+      "SetPoint": true,
+      "ResultMain": true,
+      "UnitMain": true,
+      "ResultSecondary": true,
+      "UnitSecondary": true,
+      "Density": true,
+      "Temperature": true,
+      "ProductName": true,
+      "TankName": true,
+      "FinalStatus": true
+    }
+  }
+
+}
