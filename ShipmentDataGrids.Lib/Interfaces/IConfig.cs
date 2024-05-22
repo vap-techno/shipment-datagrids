@@ -11,7 +11,7 @@ namespace ShipmentDataGrids.Lib.Interfaces
         /// <summary>
         /// Адрес сервера
         /// </summary>
-        string ServerAddress { get; set; }
+        string Server { get; set; }
 
         /// <summary>
         /// Имя базы данных

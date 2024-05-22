@@ -65,7 +65,7 @@ namespace ShipmentDataGrids.Lib.Common
                     }
                     else
                     {
-                        serverAddress = config.ServerAddress ?? ".\\SQLEXPRESS";
+                        serverAddress = config.Server ?? ".\\SQLEXPRESS";
                         conString = $"Data Source={serverAddress};Persist Security Info=False;User ID={config.UserName}; Password={config.Password};Initial Catalog={config.DbName}";
                     }
 
@@ -73,7 +73,7 @@ namespace ShipmentDataGrids.Lib.Common
 
                 case "mysql":
 
-                    serverAddress = config.ServerAddress ?? "localhost";
+                    serverAddress = config.Server ?? "localhost";
                     conString = $"DRIVER={{MySQL ODBC 8.0 Unicode Driver}};SERVER={serverAddress};DATABASE={config.DbName};UID={config.UserName};PASSWORD={config.Password};OPTION=3";
                     break;
 
