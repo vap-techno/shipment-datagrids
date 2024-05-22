@@ -9,6 +9,12 @@ namespace ShipmentDataGrids.Lib
 {
     public class Config: IConfig
     {
+
+        /// <summary>
+        /// Адрес сервера
+        /// </summary>
+        public string ServerAddress { get; set; }
+
         /// <summary>
         /// Имя базы данных
         /// </summary>

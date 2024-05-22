@@ -1,5 +1,6 @@
 {
   "Shipment": {
+    "Server": "ASUTP_5\\SQLEXPRESS",
     "DbName": "ShipmentDb",
     "DbType": "sqlexpress",
     "UserName": "asn_user",

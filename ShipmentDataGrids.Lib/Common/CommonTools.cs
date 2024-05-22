@@ -53,6 +53,7 @@ namespace ShipmentDataGrids.Lib.Common
         {
 
             string conString = null;
+            string serverAddress = null;
 
             switch (config.DbType.ToLower())
             {
@@ -61,17 +62,19 @@ namespace ShipmentDataGrids.Lib.Common
                     if (config.UserName == null)
                     {
                         conString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ShipmentDB;Integrated Security=True";
-                    } 
+                    }
                     else
                     {
-                        conString = $"Data Source=.\\SQLEXPRESS;Persist Security Info=False;User ID={config.UserName}; Password={config.Password};Initial Catalog={config.DbName}";
+                        serverAddress = config.ServerAddress ?? ".\\SQLEXPRESS";
+                        conString = $"Data Source={serverAddress};Persist Security Info=False;User ID={config.UserName}; Password={config.Password};Initial Catalog={config.DbName}";
                     }
 
                     break;
 
                 case "mysql":
 
-                    conString = $"DRIVER={{MySQL ODBC 8.0 Unicode Driver}};SERVER=localhost;DATABASE={config.DbName};UID={config.UserName};PASSWORD={config.Password};OPTION=3";
+                    serverAddress = config.ServerAddress ?? "localhost";
+                    conString = $"DRIVER={{MySQL ODBC 8.0 Unicode Driver}};SERVER={serverAddress};DATABASE={config.DbName};UID={config.UserName};PASSWORD={config.Password};OPTION=3";
                     break;
 
                 case "postgresql":

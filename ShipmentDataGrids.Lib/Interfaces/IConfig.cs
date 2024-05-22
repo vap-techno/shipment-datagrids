@@ -9,6 +9,11 @@ namespace ShipmentDataGrids.Lib.Interfaces
     public interface IConfig
     {
         /// <summary>
+        /// Адрес сервера
+        /// </summary>
+        string ServerAddress { get; set; }
+
+        /// <summary>
         /// Имя базы данных
         /// </summary>
         string DbName { get; set; }
