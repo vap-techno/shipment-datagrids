@@ -22,7 +22,9 @@
       "ProductName": true,
       "TankName": true,
       "FinalStatus": true
-    }
+    },
+
+    "TemplatePath": "D:\\Project\\Config\\ShipmentTmpl.xlsx"
   }
 
 }

@@ -12,11 +12,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClosedXML.Excel;
+using ClosedXML.Report;
 using Newtonsoft.Json;
 using ShipmentDataGrids.Lib.Services;
 using ShipmentDataGrids.Lib.Interfaces;
 using ShipmentDataGrids.Lib.Models;
 using ShipmentDataGrids.Lib.Common;
+using System.Diagnostics;
 
 namespace ShipmentDataGrids.Lib
 {
@@ -28,6 +31,7 @@ namespace ShipmentDataGrids.Lib
         // Сервис работы с БД
         DbService _dbService;
         Columns _columns;
+        string _templatePath;
 
         private const string ConfigFile = @"ConfigArm.json";
 
@@ -69,6 +73,7 @@ namespace ShipmentDataGrids.Lib
                     {
                         _dbService = new DbService(config);
                         _columns = config.Columns;
+                        _templatePath = config.TemplatePath;
                     }
                     catch (Exception ex)
                     {
@@ -327,6 +332,24 @@ namespace ShipmentDataGrids.Lib
             }
         }
 
+        /// <summary>
+        /// Экспорт протокола отгрузки в XLSX
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="fileName"></param>
+        private void ExportProtocolToFile(IShipment item, string fileName)
+        {
+            var outputFile = fileName;
+
+            var template = new XLTemplate(_templatePath);
+
+            template.AddVariable(item);
+            template.Generate();
+            template.SaveAs(outputFile);
+
+            // Открыть файл сразу
+            Process.Start(new ProcessStartInfo(outputFile) { UseShellExecute = true });
+        }
 
         #endregion
 
@@ -396,6 +419,86 @@ namespace ShipmentDataGrids.Lib
 
         #endregion
 
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & MouseButtons.Left) != 0)
+            {
+                // Запоминаем номер строки
+                int rowPosition = dataGridView1.HitTest(e.X, e.Y).RowIndex;
+                if (rowPosition >= 0 && dataGridView1.Rows[rowPosition].Cells.Count > 0)
+                {
+                    dataGridView1.Rows[rowPosition].Selected = true;
+                    var res = new Shipment();
+
+                    for (int i = 0; i < dataGridView1.Rows[rowPosition].Cells.Count; i++)
+                    {
+                        if (dataGridView1.Columns[i].Name == "Id") res.Id = (int)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "Ts") res.Ts = (DateTime)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "PostName") res.PostName = (string)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "ProductName") res.ProductName = (string)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "TankName") res.TankName = (string)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "TimeBegin") res.TimeBegin = (DateTime)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "TimeEnd") res.TimeEnd = (DateTime)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "SetPoint") res.SetPoint = (double)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "ResultMain") res.ResultMain = (double)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "ResultSecondary") res.ResultSecondary = (double)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "UnitMain") res.UnitMain = (string)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "UnitSecondary") res.UnitSecondary = (string)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "Temperature") res.Temperature = (double)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "Density") res.Density = (double)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                        if (dataGridView1.Columns[i].Name == "FinalStatus") res.FinalStatus = (string)dataGridView1.Rows[rowPosition].Cells[i].Value;
+                    }
+
+                    DialogResult dialogResult = MessageBox.Show("Сохранить в файл xlsx?", "Протокол отгрузки", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        SaveFileDialog sfd = new SaveFileDialog
+                        {
+                            Filter = "XLSX (*.xlsx)|*.xlsx",
+                            FilterIndex = 2,
+                            FileName = $"Протокол_Отгрузка_{res.Ts:yyyy-MM-dd_HH_mm_ss}"
+                        };
+
+                        bool fileError = false;
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            if (File.Exists(sfd.FileName))
+                            {
+                                try
+                                {
+                                    File.Delete(sfd.FileName);
+                                }
+                                catch (IOException ex)
+                                {
+                                    fileError = true;
+                                    MessageBox.Show("Невозможно записать данные на этот диск" + ex.Message);
+                                }
+                            }
+                            if (!fileError)
+                            {
+                                try
+                                {
+
+                                    ExportProtocolToFile(res, sfd.FileName);
+                                    MessageBox.Show("Экспорт завершен", "Info");
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("Error :" + ex.Message);
+                                }
+                            }
+                        }
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        //do something else
+                    }
+                }
+
+
+
+            }
+        }
     }
 
 }

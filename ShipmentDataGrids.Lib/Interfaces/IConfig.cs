@@ -38,5 +38,10 @@ namespace ShipmentDataGrids.Lib.Interfaces
         /// </summary>
         Columns Columns { get; set; }
 
+        /// <summary>
+        /// Путь к шаблону ТТН
+        /// </summary>
+        string TemplatePath { get; set; }
+
     }
 }

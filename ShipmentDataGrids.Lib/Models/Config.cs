@@ -40,6 +40,11 @@ namespace ShipmentDataGrids.Lib
         /// </summary>
         public Columns Columns { get; set; }
 
+        /// <summary>
+        /// Путь к шаблону ТТН
+        /// </summary>
+        public string TemplatePath { get; set; }
+
     }
 
     /// <summary>

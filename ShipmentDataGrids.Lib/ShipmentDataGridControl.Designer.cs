@@ -82,7 +82,7 @@
             this.radioCustom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioCustom.Location = new System.Drawing.Point(417, 15);
             this.radioCustom.Name = "radioCustom";
-            this.radioCustom.Size = new System.Drawing.Size(124, 20);
+            this.radioCustom.Size = new System.Drawing.Size(123, 20);
             this.radioCustom.TabIndex = 13;
             this.radioCustom.TabStop = true;
             this.radioCustom.Text = "Произвольный";
@@ -119,7 +119,7 @@
             this.labelEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelEnd.Location = new System.Drawing.Point(764, 16);
             this.labelEnd.Name = "labelEnd";
-            this.labelEnd.Size = new System.Drawing.Size(31, 16);
+            this.labelEnd.Size = new System.Drawing.Size(30, 16);
             this.labelEnd.TabIndex = 10;
             this.labelEnd.Text = "ПО:";
             // 
@@ -129,7 +129,7 @@
             this.labelBegin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelBegin.Location = new System.Drawing.Point(556, 16);
             this.labelBegin.Name = "labelBegin";
-            this.labelBegin.Size = new System.Drawing.Size(20, 16);
+            this.labelBegin.Size = new System.Drawing.Size(19, 16);
             this.labelBegin.TabIndex = 9;
             this.labelBegin.Text = "С:";
             // 
@@ -262,6 +262,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1596, 314);
             this.dataGridView1.TabIndex = 8;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // tableLayoutPanel1
             // 
