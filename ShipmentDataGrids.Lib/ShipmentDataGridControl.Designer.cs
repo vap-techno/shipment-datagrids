@@ -298,7 +298,7 @@
             this.buttonExport.Size = new System.Drawing.Size(41, 41);
             this.buttonExport.TabIndex = 14;
             this.buttonExport.UseVisualStyleBackColor = true;
-            this.buttonExport.Click += new System.EventHandler(this.buttonExportExcel_Click);
+            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
             // 
             // buttonRefresh
             // 

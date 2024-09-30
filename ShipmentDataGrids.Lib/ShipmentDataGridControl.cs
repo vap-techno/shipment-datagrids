@@ -353,6 +353,63 @@ namespace ShipmentDataGrids.Lib
 
         #endregion
 
+        #region Async Methods
+
+        /// <summary>
+        /// Заполняет DataGrid в зависимости от выбранного radiobutton в коллекции
+        /// </summary>
+        /// <param name="controls"> Список контролов в панели, бросить сюда Panel.Controls </param>
+        private async Task ReFillDataGridAsync(ControlCollection controls)
+        {
+
+            // Определяем отмеченный radiobutton и обновляем dataGrid
+            RadioButton _rb = controls.OfType<RadioButton>().FirstOrDefault(rb => rb.Checked);
+
+            if (_rb == null || _dbService == null) return;
+
+            List<IShipment> lst = null;
+            switch (_rb.Name)
+            {
+                case "radioDay":
+                    lst = await _dbService.GetShipmentsLastDayAsync();
+                    break;
+                case "radioWeek":
+                    lst = await _dbService.GetShipmentsLastWeekAsync();
+                    break;
+                case "radioMonth":
+                    lst = await _dbService.GetShipmentsLastMonthAsync();
+                    break;
+                case "radioYear":
+                    lst = await _dbService.GetShipmentsLastYearAsync();
+                    break;
+                case "radioAll":
+                    lst = await _dbService.GetShipmentsAsync();
+                    break;
+                case "radioCustom":
+
+                    var beginDate = dateTimePickerBeginDate.Value.Date;
+                    var beginTime = dateTimePickerBeginTime.Value.TimeOfDay;
+                    var customDateBegin = beginDate + beginTime;
+
+                    var endDate = dateTimePickerEndDate.Value.Date;
+                    var endTime = dateTimePickerEndTime.Value.TimeOfDay;
+                    var customDateEnd = endDate + endTime;
+
+
+                    lst = await _dbService.GetShipmentsInRangeAsync(customDateBegin, customDateEnd);
+                    break;
+            }
+
+            SortableBindingList<IShipment> srtlst = new SortableBindingList<IShipment>(lst);
+
+            dataGridView1.DataSource = srtlst;
+            FormatDataGridView(dataGridView1);
+
+        }
+
+        #endregion
+
+
         #region Event Handlers
 
         /// <summary>
@@ -360,9 +417,9 @@ namespace ShipmentDataGrids.Lib
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonRefresh_Click(object sender, EventArgs e)
+        private async void buttonRefresh_Click(object sender, EventArgs e)
         {
-            ReFillDataGrid(panelFilter.Controls);
+            await ReFillDataGridAsync(panelFilter.Controls);
         }
 
         /// <summary>
@@ -370,7 +427,7 @@ namespace ShipmentDataGrids.Lib
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void radioButtons_CheckedChanged(object sender, EventArgs e)
+        private async void radioButtons_CheckedChanged(object sender, EventArgs e)
         {
             LockDateTimePickers();
             if (sender is RadioButton radioButton && radioButton.Checked)
@@ -383,43 +440,31 @@ namespace ShipmentDataGrids.Lib
                         break;
 
                     default:
-                        ReFillDataGrid(panelFilter.Controls);
+                        await ReFillDataGridAsync(panelFilter.Controls);
                         break;
                 }
 
             }
         }
 
-        private void dateTimePickerBegin_ValueChanged(object sender, EventArgs e)
+        private async void dateTimePickerBegin_ValueChanged(object sender, EventArgs e)
         {
-            ReFillDataGrid(panelFilter.Controls);
+            await ReFillDataGridAsync(panelFilter.Controls);
         }
 
-        private void dateTimePickerEnd_ValueChanged(object sender, EventArgs e)
+        private async void dateTimePickerEnd_ValueChanged(object sender, EventArgs e)
         {
-            ReFillDataGrid(panelFilter.Controls);
+            await ReFillDataGridAsync(panelFilter.Controls);
         }
 
-        private void buttonExportExcel_Click(object sender, EventArgs e)
+        private void buttonExport_Click(object sender, EventArgs e)
         {
             ExportToCsv();
         }
 
-
-        //TODO: Разблокировать только при асинхронных запросах
-        /// <summary>
-        /// Через каждое срабатывание таймер обновляет запрос к БД и записывает в DataGrid
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            ReFillDataGrid(panelFilter.Controls);
-        }
-
         #endregion
 
-        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private async void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if ((e.Button & MouseButtons.Left) != 0)
             {
@@ -478,8 +523,7 @@ namespace ShipmentDataGrids.Lib
                             {
                                 try
                                 {
-
-                                    ExportProtocolToFile(res, sfd.FileName);
+                                    await Task.Run(() => ExportProtocolToFile(res, sfd.FileName));
                                     MessageBox.Show("Экспорт завершен", "Info");
                                 }
                                 catch (Exception ex)
